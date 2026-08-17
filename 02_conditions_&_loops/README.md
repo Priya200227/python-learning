@@ -1,7 +1,6 @@
 # Python Conditions & Loops
 
 This section covers how Python makes decisions and repeats operations using conditional statements and loops.
-
 These concepts are essential for controlling program flow and are commonly used in data processing, automation, and application logic.
 
 ---
