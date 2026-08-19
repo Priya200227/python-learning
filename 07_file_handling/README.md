@@ -31,7 +31,7 @@ The notebook progresses from basic text-file operations to context managers, fil
 - JSON vs Pickle
 - Windows file paths and raw strings
 
-## 1. What is File Handling?
+## What is File Handling?
 
 File handling is the process of allowing a Python program to create, read, write, modify, and manage data stored in files.
 
@@ -43,7 +43,7 @@ Open → Read/Write → Close
 
 Python provides built-in tools for working with files without requiring an external library for basic file I/O.
 
-## 2. Text Files vs Binary Files
+## Text Files vs Binary Files
 
 There are two broad types of data handled during file I/O.
 
@@ -61,7 +61,7 @@ Examples: Images, Audio, Video, Executable files, Other non-text files
 
 The file mode determines whether Python treats the file as text or binary.
 
-## 3. Opening a File
+## Opening a File
 
 The basic syntax is:
 
@@ -91,7 +91,7 @@ f.tell()
 f.close()
 ```
 
-## 4. File Modes
+## File Modes
 
 Common modes used in the notebook:
 
@@ -122,7 +122,7 @@ with open("sample.txt", "a") as f:
 
 Append mode adds new content to the end instead of replacing the existing content.
 
-## 5. Writing to a File
+## Writing to a File
 
 **`write()`**
 
@@ -165,7 +165,7 @@ with open("sample.txt", "w") as f:
 
 Important: `writelines()` does not automatically add newline characters. If separate lines are required, include `\n` in the strings.
 
-## 6. Reading from a File
+## Reading from a File
 
 **`read()`**
 
@@ -210,7 +210,7 @@ with open("sample.txt", "r") as f:
         print(data, end="")
 ```
 
-## 7. Context Manager: `with`
+## Context Manager: `with`
 
 Instead of manually calling `close()`, Python provides the `with` statement.
 
@@ -233,7 +233,7 @@ With with:
 open → work → automatic cleanup
 ```
 
-## 8. File Pointer
+## File Pointer
 
 When a file is being read or written, Python maintains a current position in the file.
 
@@ -280,7 +280,7 @@ File
     file pointer
 ```
 
-## 9. Reading Large Files in Chunks
+## Reading Large Files in Chunks
 
 Large files should not always be loaded completely into memory.
 
@@ -313,7 +313,7 @@ Repeat
 
 This approach is useful when working with files that are too large to comfortably load into memory at once.
 
-## 10. Binary Files
+## Binary Files
 
 Text mode is designed for character-based data.
 
@@ -341,7 +341,7 @@ rb → read binary
 wb → write binary
 ```
 
-## 11. Working with Other Python Data Types
+## Working with Other Python Data Types
 
 A text file stores text.
 
@@ -365,7 +365,7 @@ The string `"5"` has to be converted back into an integer.
 
 This becomes more important with complex Python objects such as dictionaries and custom classes.
 
-## 12. Serialization and Deserialization
+## Serialization and Deserialization
 
 **Serialization**
 
@@ -393,7 +393,7 @@ Python object
 
 The notebook explores JSON and Pickle as two different approaches.
 
-## 13. JSON
+## JSON
 
 JSON (JavaScript Object Notation) is a text-based, human-readable data format commonly used for storing and exchanging structured data.
 
@@ -445,7 +445,7 @@ print(type(data))
 
 The JSON representation is converted back into corresponding Python data structures.
 
-## 14. Nested JSON Data
+## Nested JSON Data
 
 JSON can represent nested structures.
 
@@ -463,7 +463,7 @@ with open("demo.json", "w") as f:
 
 This is useful for representing structured real-world data.
 
-## 15. JSON and Tuples
+## JSON and Tuples
 
 The notebook also demonstrates serializing a tuple:
 
@@ -482,7 +482,7 @@ When deserialized, it comes back as a Python list rather than preserving the ori
 
 This illustrates an important limitation of JSON: not every Python type has a one-to-one representation in JSON.
 
-## 16. Serializing Custom Python Objects
+## Serializing Custom Python Objects
 
 JSON does not automatically know how to serialize arbitrary custom Python objects.
 
@@ -523,7 +523,7 @@ with open("demo.json", "w") as f:
 
 The custom object is converted into a JSON-compatible dictionary before being written.
 
-## 17. Pickling
+## Pickling
 
 Pickle is Python's mechanism for serializing Python objects into a byte stream.
 
@@ -580,7 +580,7 @@ p.display_info()
 
 The Python object can be reconstructed from the serialized data.
 
-## 18. JSON vs Pickle
+## JSON vs Pickle
 
 | Feature | JSON | Pickle |
 |---|---|---|
@@ -603,7 +603,7 @@ Python object → byte stream → Python object
 
 **Security warning:** Only unpickle data that you trust. Loading malicious pickle data can execute arbitrary code.
 
-## 19. File Paths
+## File Paths
 
 File paths tell Python where a file is located.
 
@@ -625,7 +625,7 @@ r"C:\Users\Priya\Desktop\notes.txt"
 
 The `r` prefix tells Python to treat backslashes as literal characters for most path-related use cases.
 
-## 20. Key Methods to Remember
+## Key Methods to Remember
 
 | Method | Purpose |
 |---|---|
@@ -642,7 +642,7 @@ The `r` prefix tells Python to treat backslashes as literal characters for most 
 | `pickle.dump()` | Serializes a Python object |
 | `pickle.load()` | Deserializes a Python object |
 
-## 21. Practical Mental Model
+## Practical Mental Model
 
 Think of file handling as interacting with stored data:
 
