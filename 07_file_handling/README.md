@@ -755,3 +755,11 @@ raises a `TypeError` because `write()` expects a string in text mode.
 The notebook also contains exploratory examples that are intended for learning rather than production-ready implementation.
 
 A few handwritten explanations simplify internal details for learning purposes. In particular, file storage should be thought of as persistent storage/disk, rather than literally "ROM", and the `with` statement is best understood as deterministic resource cleanup rather than relying on the garbage collector.
+
+---
+# Learning Resources
+
+- [CampusX File Handling](https://www.youtube.com/live/o-TAYRMQzIQ?si=mDrmmhh3bJ5g5aRm)
+- [Open GitHub Page](https://github.com/Asabeneh/30-Days-Of-Python/blob/master/19_Day_File_handling/19_file_handling.md)
+- [Chroma Campus Website](https://www.cromacampus.com/blogs/what-is-file-handling-in-python-programming/)
+- [Mimo Webpage](https://mimo.org/glossary/python/file-handling)
