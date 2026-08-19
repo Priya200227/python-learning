@@ -712,7 +712,6 @@ A few handwritten explanations simplify internal details for learning purposes. 
 
 - [CampusX File Handling](https://www.youtube.com/live/o-TAYRMQzIQ?si=mDrmmhh3bJ5g5aRm)
 - [File Handling - Visually Explained YouTube Channel](https://youtu.be/PXySDMxOPnI?si=T__Wu9oe_XnhEMZl)
-- [Chroma Campus Website](https://www.cromacampus.com/blogs/what-is-file-handling-in-python-programming/)
 - [Mimo Webpage](https://mimo.org/glossary/python/file-handling)
 - [JSON - Visually Explained YouTube Channel](https://youtu.be/4rmBOxn0PdI?si=paZhPM8vHTqHB_PQ)
 - [Context Managers - Visually Explained YouTube Channel](https://youtu.be/LffQVBq3P9o?si=IpkVFJ3VKqg1ZKnV)
