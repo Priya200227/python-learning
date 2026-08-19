@@ -642,11 +642,11 @@ The `r` prefix tells Python to treat backslashes as literal characters for most 
 | `pickle.dump()` | Serializes a Python object |
 | `pickle.load()` | Deserializes a Python object |
 
----
-### 21. Practical Mental Model
+## 21. Practical Mental Model
 
 Think of file handling as interacting with stored data:
 
+```
                  FILE HANDLING
                       │
           ┌───────────┴───────────┐
@@ -666,9 +666,11 @@ Think of file handling as interacting with stored data:
          JSON     Pickle
           │         │
      human-readable Python objects
+```
 
 The main progression is:
 
+```
 Basic File I/O
       ↓
 Read / Write / Append
@@ -686,8 +688,10 @@ Serialization
 JSON
       ↓
 Pickle
-
----
+```
 # Learning Resources
 
-- [CampusX LangChain Playlist](https://youtu.be/pSVk-5WemQ0?si=-0ow2vXIQibJdmn-)
+- [CampusX Error Handling](https://www.youtube.com/live/rvKR6tciJ2Q?si=5HHG3aI2xFnWqa4m)
+- [GeekforGeeks](https://www.geeksforgeeks.org/python/python-exception-handling/)
+- [Python Official Document](https://docs.python.org/3/tutorial/errors.html)
+- [For Practice](https://coddy.tech/learn/python/logic_and_flow/what_is_error_handling)
