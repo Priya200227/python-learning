@@ -1,4 +1,4 @@
-# Python File Handling
+# 🐍 Python File Handling
 
 A practical collection of Python examples covering file handling and file I/O, based on handwritten learning notes and a Jupyter Notebook.
 
