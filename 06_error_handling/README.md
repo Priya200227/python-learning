@@ -731,3 +731,4 @@ Handle it explicitly
 - [Open GitHub Page](https://github.com/Asabeneh/30-Days-Of-Python/blob/master/17_Day_Exception_handling/17_exception_handling.md)
 - [Python Official Document](https://docs.python.org/3/tutorial/errors.html)
 - [For Practice](https://coddy.tech/learn/python/logic_and_flow/what_is_error_handling)
+- [Visually Explained YouTube Channel](https://youtu.be/XN3udSTGAOM?si=iDcfOnVJ_WGdphHT)
