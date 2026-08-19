@@ -11,7 +11,7 @@ They help make programs:
 
 ---
 
-# 1. Types of Functions
+# Types of Functions
 
 Python functions can be categorized into several types.
 
@@ -53,7 +53,7 @@ def greet():
 
 ---
 
-# 2. Defining and Calling a Function
+# Defining and Calling a Function
 
 A function is defined using the `def` keyword.
 
@@ -75,7 +75,7 @@ The function body executes only when the function is called.
 
 ---
 
-# 3. Parameters and Arguments
+# Parameters and Arguments
 
 **Parameters** are variables defined in the function.
 
@@ -115,7 +115,7 @@ Keyword arguments make function calls more explicit and readable.
 
 ---
 
-# 4. Default Parameters
+# Default Parameters
 
 A parameter can have a default value.
 
@@ -146,7 +146,7 @@ def greet(name, country="India"):
 
 ---
 
-# 5. `return`
+# `return`
 
 `return` sends a value back to the caller and ends the function.
 
@@ -169,7 +169,7 @@ If a function doesn't explicitly return a value, Python returns `None`.
 
 ---
 
-# 6. `*args` and `**kwargs`
+# `*args` and `**kwargs`
 
 ## `*args`
 
@@ -217,7 +217,7 @@ The keyword arguments are collected into a dictionary.
 
 ---
 
-# 7. Scope: Local vs Global Variables
+# Scope: Local vs Global Variables
 
 ## Local Variable
 
@@ -249,7 +249,7 @@ Avoid unnecessary global variables because they can make program behavior harder
 
 ---
 
-# 8. Multiple Input and Output
+# Multiple Input and Output
 
 Functions can accept multiple parameters and return multiple values.
 
@@ -270,7 +270,7 @@ result = (5, 6)
 
 ---
 
-# 9. Function Design
+# Function Design
 
 A good function should generally:
 
@@ -293,7 +293,7 @@ A function name should clearly communicate what the function does.
 
 ---
 
-# 10. Functions in a Program
+# Functions in a Program
 
 Functions can be divided based on their purpose.
 
