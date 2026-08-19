@@ -1,4 +1,4 @@
-# Python Error Handling
+# 🐍 Python Error Handling
 
 This repository contains my notes and practice code for Exception Handling in Python.
 
