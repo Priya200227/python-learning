@@ -264,6 +264,6 @@ These concepts become especially useful when working with:
 # Learning Resources
 
 - [Modules,Packages,Libraries - YouTube Link](https://youtu.be/6mw_lWlHCYk?si=MUPtmNk1u4wlLBh4)
-- [Visually Explained YouTube Channel](https://youtu.be/7MOzepKojbw?si=YmlfqZz3HZyIFbsc)
-- [Virtual Environment](https://youtu.be/nwN27ORTUXg?si=BKEcvgaYMBtxiOaN)
-- [UV package explanation](https://youtu.be/8mk85fyzevc?si=vLZ9g2lLWyOipdzR)
+- [Libraries&Modules - Visually Explained YouTube Link](https://youtu.be/7MOzepKojbw?si=YmlfqZz3HZyIFbsc)
+- [Virtual Environment - Chai aur Code YouTube Link](https://youtu.be/nwN27ORTUXg?si=BKEcvgaYMBtxiOaN)
+- [UV package explanation - Chai aur Code YouTube Link](https://youtu.be/8mk85fyzevc?si=vLZ9g2lLWyOipdzR)
