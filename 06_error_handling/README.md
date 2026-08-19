@@ -4,7 +4,7 @@ This repository contains my notes and practice code for Exception Handling in Py
 
 The topic covers how Python errors occur, how to identify different error types, how exceptions differ from syntax errors, and how to handle, raise, and create custom exceptions.
 
-## 1. Why Do Errors Happen?
+## Why Do Errors Happen?
 
 Errors can occur at different stages of a Python program.
 
@@ -41,7 +41,7 @@ Examples:
 - ZeroDivisionError
 - FileNotFoundError
 
-## 2. Common Python Exceptions
+## Common Python Exceptions
 
 **IndexError**
 
@@ -120,7 +120,7 @@ l = [1, 2, 3]
 l.upper()
 ```
 
-## 3. What Is an Exception?
+## What Is an Exception?
 
 An exception is an error that occurs during program execution.
 
@@ -143,7 +143,7 @@ ZeroDivisionError
 
 Exception handling allows us to decide what the program should do when such situations occur.
 
-## 4. How to Handle Exceptions
+## How to Handle Exceptions
 
 Python provides the `try` / `except` structure.
 
@@ -174,7 +174,7 @@ The basic idea is:
 - `try` → contains code that may cause an exception
 - `except` → handles the exception
 
-## 5. Catching a Specific Exception
+## Catching a Specific Exception
 
 It is better to catch the specific exception when possible.
 
@@ -190,7 +190,7 @@ except ZeroDivisionError:
 
 This is preferable to blindly catching every exception because it makes the program's intention clearer.
 
-## 6. Accessing the Exception Object
+## Accessing the Exception Object
 
 We can store the exception object using `as`.
 
@@ -212,7 +212,7 @@ print(e.with_traceback(e.__traceback__))
 
 to inspect traceback information.
 
-## 7. Exception Traceback
+## Exception Traceback
 
 A traceback helps identify:
 
@@ -231,7 +231,7 @@ Error type
 Error message
 ```
 
-## 8. Exception Hierarchy
+## Exception Hierarchy
 
 Python exceptions are organized into a class hierarchy.
 
@@ -262,7 +262,7 @@ except Exception:
 
 can catch many ordinary exceptions.
 
-## 9. `else` Block
+## `else` Block
 
 Python also provides an `else` block with `try`/`except`.
 
@@ -291,7 +291,7 @@ It allows us to keep the code that should execute only after successful executio
 
 For readability, code that is not expected to raise the handled exception does not need to be unnecessarily placed inside `try`.
 
-## 10. `finally` Block
+## `finally` Block
 
 The `finally` block is used for code that should execute regardless of whether an exception occurs or not.
 
@@ -347,7 +347,7 @@ try
 
 The important idea is: `finally` is for code that must run after the try/except process.
 
-## 11. `try` + `except` + `else` + `finally`
+## `try` + `except` + `else` + `finally`
 
 All four blocks can be combined:
 
@@ -374,7 +374,7 @@ The roles are:
 | else | Run when no exception occurs |
 | finally | Run regardless of success/failure |
 
-## 12. Raising an Exception Manually
+## Raising an Exception Manually
 
 Python allows us to intentionally raise an exception using `raise`.
 
@@ -406,7 +406,7 @@ if withdrawal > balance:
 
 The calculation itself may be valid, but the application rule is violated.
 
-## 13. `raise` vs `except`
+## `raise` vs `except`
 
 These two have different purposes.
 
@@ -437,7 +437,7 @@ raise   → "Something is wrong. Stop/transfer control."
 except  → "I know how to handle that problem."
 ```
 
-## 14. Custom Exceptions
+## Custom Exceptions
 
 Python provides many built-in exceptions, but applications sometimes need their own exception types.
 
@@ -466,7 +466,7 @@ except MyException as e:
     print(e)
 ```
 
-## 15. Custom Exception with a Constructor
+## Custom Exception with a Constructor
 
 A custom exception can define its own constructor.
 
@@ -488,7 +488,7 @@ raise MyException("This is my custom error")
 
 The custom exception can carry an application-specific message.
 
-## 16. Why Create a Custom Exception Class?
+## Why Create a Custom Exception Class?
 
 Custom exceptions are useful when an application has domain-specific or business-specific error conditions.
 
@@ -542,7 +542,7 @@ except InsufficientBalanceError:
 - **Better readability** — the exception name communicates what went wrong
 - **Better maintainability** — as an application grows, custom exception classes make error handling more organized
 
-## 17. Why Must a Custom Exception Inherit from `Exception`?
+## Why Must a Custom Exception Inherit from `Exception`?
 
 A custom exception should normally inherit from Python's exception hierarchy.
 
@@ -563,7 +563,7 @@ Exception
 
 Without inheriting from an appropriate exception base class, the class does not behave as a normal custom exception type.
 
-## 18. Custom Exceptions for Application-Level Errors
+## Custom Exceptions for Application-Level Errors
 
 A useful mental model is:
 
@@ -586,7 +586,7 @@ Built-in exceptions describe common programming/runtime problems.
 
 Custom exceptions allow the application to describe its own rules.
 
-## 19. Error Handling vs Error Prevention
+## Error Handling vs Error Prevention
 
 Exception handling does not mean: *"Put every line of code inside try."*
 
@@ -616,7 +616,7 @@ except Exception:
 
 can hide bugs and make debugging harder.
 
-## 20. Exception Handling Flow
+## Exception Handling Flow
 
 A useful mental model:
 
@@ -637,7 +637,7 @@ A useful mental model:
 
 If an exception occurs and no matching `except` handles it, the exception continues propagating upward through the call stack.
 
-## 21. Key Concepts Learned
+## Key Concepts Learned
 
 | Concept | Purpose |
 |---|---|
@@ -653,7 +653,7 @@ If an exception occurs and no matching `except` handles it, the exception contin
 | Traceback | Shows where/how an exception occurred |
 | as e | Gives access to the exception object |
 
-## 22. Common Mistakes
+## Common Mistakes
 
 **Mistake 1 — Catching everything blindly**
 
@@ -682,24 +682,8 @@ A large `try` block makes it harder to identify which operation actually failed.
 
 Keep the risky operation reasonably focused.
 
-## 23. Practice Code
-
-The accompanying Python practice file demonstrates:
-
-- common exception types
-- try/except
-- exception objects
-- traceback concepts
-- else
-- finally
-- raise
-- custom exception classes
-- custom exception constructors
-- exception hierarchy
-
-The examples are intentionally small so that each concept can be isolated and understood.
-
-## 24. Learning Takeaway
+---
+## Learning Takeaway
 
 The most important mental model from this topic is:
 
