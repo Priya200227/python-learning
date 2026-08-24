@@ -197,27 +197,18 @@ Covers dataclasses and closures.
 
 ---
 
-## 🧠 Learning Sequence
+## 🧠 Learning Resources
 
-The concepts in this section were studied in the following order:
+- [CampusX Class | Object]([https://www.youtube.com/live/Trvqq5w7-0Q?si=e9sc_yo-C6GazH6c)
+- [CampusX Encapsulation | Static Keyword | Reference Variable](https://www.youtube.com/live/P4xizq3CiJg?si=4W6tBXwI_5DcmoTk)
+- [CampusX Inheritance | Polymorphism]ps://www.youtube.com/live/bEWwM4hXZg8?si=lfPWD6JF5KryBr0m)
+- [CampusX Abstraction](https://youtu.be/O-NrQvtorp0?si=l5bO_cCtBAdPWsU0)
+- [CampusX Iterators](https://youtu.be/pH7YVRhnpUI?si=bX51y1JkruZ87X8m)
+- [CampusX Namespaces | Decorators](https://www.youtube.com/live/aMARZGTbULc?si=7eMI7kb3DRtKCwx7)
+- [Geekforgeeks Website - Closures](https://www.geeksforgeeks.org/python/python-closures/)
+- [CampusX ]()
 
-```text
-Classes & Objects
-       ↓
-Encapsulation
-       ↓
-Inheritance
-       ↓
-Polymorphism
-       ↓
-Abstraction
-       ↓
-Namespaces
-       ↓
-Decorators
-       ↓
-Iterators
-       ↓
 Dataclasses
        ↓
 Closures
+](https://www.youtube.com/live/Trvqq5w7-0Q?si=e9sc_yo-C6GazH6c)
