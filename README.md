@@ -42,8 +42,8 @@ As I progress, this repository will also include practical Python programs and p
 | Exception Handling | ✅ Covered |
 | File Handling | ✅ Covered |
 | JSON & Serialization | ✅ Covered |
-| Object-Oriented Programming | 🔄 In Progress |
-| Iterators & Generators | ⏳ Upcoming |
+| Object-Oriented Programming | ✅ Covered|
+| Iterators & Generators | ✅ Covered |
 | Logging | ⏳ Upcoming |
 | Testing | ⏳ Upcoming |
 | APIs & HTTP | ⏳ Upcoming |
