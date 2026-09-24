@@ -50,11 +50,6 @@ As I progress, this repository will also include practical Python programs and p
 | Environment Variables & Secrets | ⏳ Upcoming |
 | Async Python & Concurrency | ⏳ Upcoming |
 | Packaging & Project Structure | ⏳ Upcoming |
-
-## 🚀 Long-Term Goal
-
-Build a strong Python foundation that can be applied across:
-
-**Data Analytics → Automation → Analytics/Data Engineering → AI Engineering**
+---
 
 This repository will evolve as I learn and build.
