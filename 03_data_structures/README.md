@@ -1,195 +1,137 @@
 # Python Data Structures
 
-Python provides several built-in data structures for storing and organizing collections of data.
+A practical guide to Python's four core built-in data structures: **lists, tuples, sets, and dictionaries**. This section covers their characteristics, operations, comprehensions, selection criteria, and applications in data processing.
 
-The four core data structures covered here are:
+## 🎯 Learning Objectives
 
-1. **List**
-2. **Tuple**
-3. **Set**
-4. **Dictionary**
+- Understand the characteristics of Python's built-in data structures.
+- Create, access, update, and remove collection elements.
+- Use commonly used methods for lists, sets, and dictionaries.
+- Apply list and dictionary comprehensions.
+- Perform mathematical set operations.
+- Understand dictionary keys, values, and membership.
+- Select appropriate data structures for different requirements.
+- Apply these concepts to practical data-processing scenarios.
 
----
+## 📚 Table of Contents
 
-# 1. List
-
-A **list** is an ordered and mutable collection of elements.
-
-```python
-my_list = ["apple", "banana", "cherry"]
-```
-
-## Key Characteristics
-
-| Property                    | List  |
-| --------------------------- | ----- |
-| Ordered                     | ✅ Yes |
-| Allows duplicates           | ✅ Yes |
-| Indexed                     | ✅ Yes |
-| Mutable                     | ✅ Yes |
-| Allows different data types | ✅ Yes |
-
-Example:
-
-```python
-my_list = ["apple", "banana", "apple", 10, True]
-
-print(my_list)
-```
+1. [Introduction](#1-introduction)
+2. [Lists](#2-lists)
+3. [List Comprehensions](#3-list-comprehensions)
+4. [Tuples](#4-tuples)
+5. [Sets](#5-sets)
+6. [Set Operations](#6-set-operations)
+7. [Dictionaries](#7-dictionaries)
+8. [Dictionary Comprehensions](#8-dictionary-comprehensions)
+9. [Comparing Data Structures](#9-comparing-data-structures)
+10. [Choosing the Right Data Structure](#10-choosing-the-right-data-structure)
+11. [Practical Examples](#11-practical-examples)
+12. [Common Interview Questions](#12-common-interview-questions)
+13. [Best Practices](#13-best-practices)
+14. [Key Takeaways](#14-key-takeaways)
+15. [References](#15-references)
 
 ---
 
-## List Indexing
+## 1. Introduction
 
-Lists use zero-based indexing.
+Data structures organize data so that it can be accessed, processed, and modified efficiently.
+
+Python provides four commonly used built-in collection types:
+
+| Data structure | Primary purpose | Example |
+|---|---|---|
+| List | Ordered, changeable collection | `[10, 20, 30]` |
+| Tuple | Ordered, immutable collection | `(10, 20, 30)` |
+| Set | Collection of unique elements | `{10, 20, 30}` |
+| Dictionary | Key-value mapping | `{"id": 101, "name": "Priya"}` |
+
+The right choice depends on the operations you need to perform, whether duplicates are allowed, and whether the collection needs to change.
+
+## 2. Lists
+
+A **list** is an ordered, mutable collection that supports indexing and allows duplicate values.
+
+### 2.1 Creating a List
 
 ```python
-my_list = ["apple", "banana", "cherry"]
+fruits = ["apple", "banana", "cherry"]
 
-print(my_list[0])
-# apple
+mixed_values = ["apple", 10, True, 3.14]
 
-print(my_list[1])
-# banana
-
-print(my_list[2])
-# cherry
+print(fruits)
+print(mixed_values)
 ```
 
-Negative indexing can be used to access elements from the end.
+Lists can contain elements of different data types, although using a consistent type is often preferable when processing structured data.
+
+### 2.2 Indexing and Slicing
+
+Python lists use zero-based indexing.
 
 ```python
-print(my_list[-1])
-# cherry
+fruits = ["apple", "banana", "cherry"]
+
+print(fruits[0])    # apple
+print(fruits[1])    # banana
+print(fruits[-1])   # cherry
+print(fruits[0:2])  # ['apple', 'banana']
 ```
 
----
+- Positive indexes access elements from the beginning.
+- Negative indexes access elements from the end.
+- Slicing extracts a portion of a list; its stop index is excluded.
 
-## List Methods
+### 2.3 Common List Methods
 
-### `append()`
+| Method | Purpose |
+|---|---|
+| `append(x)` | Adds an element to the end. |
+| `insert(i, x)` | Inserts an element at an index. |
+| `remove(x)` | Removes the first matching value. |
+| `pop(i)` | Removes and returns an element; defaults to the last. |
+| `clear()` | Removes all elements. |
+| `sort()` | Sorts the list in place. |
+| `reverse()` | Reverses the list in place. |
 
-Adds an element to the end of the list.
+Examples:
 
 ```python
 numbers = [1, 2, 3]
 
 numbers.append(4)
-
-print(numbers)
-# [1, 2, 3, 4]
-```
-
-### `insert()`
-
-Adds an element at a specific position.
-
-```python
-numbers = [1, 2, 3]
+print(numbers)  # [1, 2, 3, 4]
 
 numbers.insert(1, 10)
+print(numbers)  # [1, 10, 2, 3, 4]
 
-print(numbers)
-# [1, 10, 2, 3]
+numbers.remove(10)
+print(numbers)  # [1, 2, 3, 4]
+
+last_value = numbers.pop()
+print(last_value)  # 4
+print(numbers)     # [1, 2, 3]
 ```
 
-### `remove()`
-
-Removes the first matching value.
-
-```python
-numbers = [1, 2, 3, 2]
-
-numbers.remove(2)
-
-print(numbers)
-# [1, 3, 2]
-```
-
-### `pop()`
-
-Removes and returns an element.
-
-```python
-numbers = [10, 20, 30]
-
-x = numbers.pop()
-
-print(x)
-# 30
-
-print(numbers)
-# [10, 20]
-```
-
-By default, `pop()` removes the last element.
-
-You can also provide an index:
-
-```python
-numbers = [10, 20, 30]
-
-numbers.pop(1)
-
-print(numbers)
-# [10, 30]
-```
-
-### `clear()`
-
-Removes all elements.
-
-```python
-numbers = [1, 2, 3]
-
-numbers.clear()
-
-print(numbers)
-# []
-```
-
-### `sort()`
-
-Sorts the list.
+Sorting:
 
 ```python
 numbers = [30, 10, 20]
 
 numbers.sort()
+print(numbers)  # [10, 20, 30]
 
-print(numbers)
-# [10, 20, 30]
-```
-
-Descending order:
-
-```python
 numbers.sort(reverse=True)
-
-print(numbers)
-# [30, 20, 10]
+print(numbers)  # [30, 20, 10]
 ```
 
-### `reverse()`
+**Important:** Methods such as `append()`, `sort()`, and `reverse()` modify the existing list. They generally return `None`, rather than a new list.
 
-Reverses the order of elements.
+## 3. List Comprehensions
 
-```python
-numbers = [1, 2, 3]
+A list comprehension creates a new list from an iterable using a concise expression.
 
-numbers.reverse()
-
-print(numbers)
-# [3, 2, 1]
-```
-
----
-
-# 2. List Comprehension
-
-List comprehension provides a concise way to create a new list.
-
-### Basic Syntax
+### 3.1 Basic Syntax
 
 ```python
 [expression for item in iterable]
@@ -200,259 +142,170 @@ Example:
 ```python
 numbers = [1, 2, 3, 4, 5]
 
-squares = [x ** 2 for x in numbers]
+squares = [number ** 2 for number in numbers]
 
 print(squares)
 # [1, 4, 9, 16, 25]
 ```
 
----
-
-## List Comprehension with Condition
-
-```python
-[expression for item in iterable if condition]
-```
-
-Example:
+### 3.2 Filtering Values
 
 ```python
 numbers = [10, 20, 60, 80, 30]
 
-high_values = [x for x in numbers if x > 50]
+high_values = [number for number in numbers if number > 50]
 
 print(high_values)
 # [60, 80]
 ```
 
----
-
-## List Comprehension for Data Transformation
-
-List comprehension can be used to transform values.
-
-Example:
+### 3.3 Transforming Values
 
 ```python
 prices = [100, 200, 300]
 
-new_prices = [price * 2 for price in prices]
+updated_prices = [price * 2 for price in prices]
 
-print(new_prices)
+print(updated_prices)
 # [200, 400, 600]
 ```
 
-This can be thought of as:
+### 3.4 Traditional Loop vs. List Comprehension
 
-> Take every value → apply an operation → create a new list.
-
----
-
-## Traditional Loop vs List Comprehension
-
-### Traditional Loop
+Traditional approach:
 
 ```python
 numbers = [1, 2, 3, 4]
-
 squares = []
 
-for num in numbers:
-    squares.append(num ** 2)
+for number in numbers:
+    squares.append(number ** 2)
 ```
 
-### List Comprehension
+List comprehension:
 
 ```python
 numbers = [1, 2, 3, 4]
-
-squares = [num ** 2 for num in numbers]
+squares = [number ** 2 for number in numbers]
 ```
 
-List comprehension is shorter and often easier to read when the logic is simple.
+List comprehensions are particularly useful for simple transformations and filtering. For complex logic, a regular loop may be easier to read.
 
----
+## 4. Tuples
 
-# 3. Tuple
+A **tuple** is an ordered collection that cannot be structurally modified after creation.
 
-A **tuple** is an ordered collection that cannot be changed after it is created.
-
-```python
-my_tuple = (1, 2, 3)
-```
-
-## Key Characteristics
-
-| Property          | Tuple |
-| ----------------- | ----- |
-| Ordered           | ✅ Yes |
-| Allows duplicates | ✅ Yes |
-| Indexed           | ✅ Yes |
-| Mutable           | ❌ No  |
-| Immutable         | ✅ Yes |
-
----
-
-## Example
-
-```python
-my_tuple = ("apple", "banana", "cherry")
-
-print(my_tuple[0])
-# apple
-```
-
----
-
-## Tuple Immutability
-
-Once a tuple is created, its elements cannot be changed.
-
-```python
-my_tuple = (10, 20, 30)
-
-# my_tuple[0] = 100
-```
-
-This produces an error because tuples are immutable.
-
----
-
-## Tuple Use Case
-
-One important use case for tuples is:
-
-> **Protecting values from accidental modification.**
-
-For example:
+### 4.1 Creating and Accessing Tuples
 
 ```python
 coordinates = (10, 20)
+values = (1, 2, 2, 3)
+
+print(coordinates[0])  # 10
+print(values[-1])      # 3
 ```
 
-If the values should remain fixed, a tuple can be appropriate.
+Tuples support indexing, slicing, and duplicate values.
 
----
-
-# 4. Set
-
-A **set** is an unordered collection of unique values.
+### 4.2 Immutability
 
 ```python
-my_set = {"apple", "banana", "cherry"}
+coordinates = (10, 20)
+
+# Raises TypeError:
+# coordinates[0] = 100
 ```
 
-## Key Characteristics
+A tuple's elements cannot be reassigned or removed. However, if a tuple contains a mutable object such as a list, that nested object may still be modified.
 
-| Property          | Set   |
-| ----------------- | ----- |
-| Ordered           | ❌ No  |
-| Allows duplicates | ❌ No  |
-| Indexed           | ❌ No  |
-| Mutable           | ✅ Yes |
-| Unique values     | ✅ Yes |
+### 4.3 Single-Element Tuples
 
----
-
-## Duplicate Values
-
-Sets automatically remove duplicates.
+A trailing comma is required to create a single-element tuple.
 
 ```python
-my_set = {1, 2, 2, 3, 3, 4}
+value = (10,)
 
-print(my_set)
+print(type(value))  # <class 'tuple'>
+```
+
+Without the comma, `(10)` is simply an integer expression.
+
+### 4.4 When to Use Tuples
+
+Tuples are useful for:
+
+- Fixed groups of related values.
+- Coordinates and other structured records.
+- Returning multiple values from a function.
+- Representing collections that should not be structurally modified.
+
+Example:
+
+```python
+coordinates = (17.3850, 78.4867)
+```
+
+## 5. Sets
+
+A **set** is a mutable collection of unique, hashable elements. Sets do not support positional indexing and do not guarantee a meaningful iteration order.
+
+### 5.1 Creating a Set
+
+```python
+numbers = {1, 2, 2, 3, 3, 4}
+
+print(numbers)
 # {1, 2, 3, 4}
 ```
 
-This makes sets useful when you need **unique values**.
+Duplicate values are eliminated.
 
----
-
-# 5. Set Methods
-
-## `add()`
-
-Adds an element.
+An empty set must be created using `set()` because `{}` creates an empty dictionary.
 
 ```python
-my_set = {1, 2, 3}
-
-my_set.add(4)
-
-print(my_set)
+empty_set = set()
 ```
 
-## `update()`
+### 5.2 Common Set Methods
 
-Adds multiple elements from another iterable.
+| Method | Purpose |
+|---|---|
+| `add(x)` | Adds one element. |
+| `update(iterable)` | Adds elements from an iterable. |
+| `remove(x)` | Removes an element; raises `KeyError` if absent. |
+| `discard(x)` | Removes an element if present without raising an error if absent. |
+| `pop()` | Removes and returns an arbitrary element. |
+| `clear()` | Removes all elements. |
+
+Examples:
 
 ```python
-my_set = {1, 2, 3}
+numbers = {1, 2, 3}
 
-my_set.update([4, 5, 6])
+numbers.add(4)
+numbers.update([5, 6])
 
-print(my_set)
+numbers.discard(10)  # No error if 10 is absent
+
+print(numbers)
 ```
 
-## `remove()`
+Because sets are unordered, do not rely on a particular element being returned by `pop()`.
 
-Removes an element.
+### 5.3 Membership Testing
 
 ```python
-my_set = {1, 2, 3}
+fruits = {"apple", "banana", "orange"}
 
-my_set.remove(2)
-
-print(my_set)
+print("apple" in fruits)  # True
+print("grape" in fruits)  # False
 ```
 
-If the value does not exist, `remove()` raises an error.
+Set membership testing is generally efficient, making sets useful for checking whether a value has already been encountered.
 
-## `discard()`
+## 6. Set Operations
 
-Removes an element if it exists.
-
-```python
-my_set = {1, 2, 3}
-
-my_set.discard(5)
-```
-
-Unlike `remove()`, `discard()` does not raise an error if the value is missing.
-
-## `pop()`
-
-Removes and returns an arbitrary element from a set.
-
-```python
-my_set = {1, 2, 3}
-
-value = my_set.pop()
-
-print(value)
-```
-
-Because sets are unordered, you should not assume which element will be removed.
-
-## `clear()`
-
-Removes all elements.
-
-```python
-my_set = {1, 2, 3}
-
-my_set.clear()
-
-print(my_set)
-# set()
-```
-
----
-
-# 6. Set Mathematical Operations
-
-Sets support useful mathematical operations.
+Sets support mathematical operations for comparing collections.
 
 Consider:
 
@@ -461,478 +314,155 @@ A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
 ```
 
-## Union
+### 6.1 Union
 
-Union combines all unique elements from both sets.
-
-```python
-A.union(B)
-```
-
-Result:
-
-```text
-{1, 2, 3, 4, 5, 6}
-```
-
-Shortcut:
+Returns all unique elements present in either set.
 
 ```python
-A | B
+print(A | B)
+# {1, 2, 3, 4, 5, 6}
 ```
 
----
+Equivalent method: `A.union(B)`.
 
-## Intersection
+### 6.2 Intersection
 
-Intersection returns elements common to both sets.
+Returns elements common to both sets.
 
 ```python
-A.intersection(B)
+print(A & B)
+# {3, 4}
 ```
 
-Result:
+Equivalent method: `A.intersection(B)`.
 
-```text
-{3, 4}
-```
+### 6.3 Difference
 
-Shortcut:
+Returns elements present in the first set but absent from the second.
 
 ```python
-A & B
+print(A - B)
+# {1, 2}
 ```
 
----
+Equivalent method: `A.difference(B)`.
 
-## Difference
+Note that `A - B` and `B - A` can produce different results.
 
-Difference returns elements that exist in the first set but not the second.
+### 6.4 Symmetric Difference
+
+Returns elements present in either set, but not in both.
 
 ```python
-A.difference(B)
+print(A ^ B)
+# {1, 2, 5, 6}
 ```
 
-Result:
+Equivalent method: `A.symmetric_difference(B)`.
 
-```text
-{1, 2}
-```
+**Application:** These operations can help compare customer lists, identify overlapping categories, and find differences between groups of records.
 
-Shortcut:
+## 7. Dictionaries
+
+A **dictionary** stores data as key-value pairs. Keys are unique and must be hashable.
+
+### 7.1 Creating a Dictionary
 
 ```python
-A - B
-```
-
----
-
-## Symmetric Difference
-
-Returns elements that exist in either set but not in both.
-
-```python
-A.symmetric_difference(B)
-```
-
-Result:
-
-```text
-{1, 2, 5, 6}
-```
-
-Shortcut:
-
-```python
-A ^ B
-```
-
----
-
-# 7. Set Membership
-
-Sets are useful when checking whether a value exists in a collection.
-
-```python
-my_set = {"apple", "banana", "orange"}
-
-print("apple" in my_set)
-# True
-```
-
-Because sets are hash-based, membership checking is generally very efficient.
-
----
-
-# 8. Dictionary
-
-A **dictionary** stores data as **key-value pairs**.
-
-```python
-user = {
+customer = {
+    "id": 101,
     "name": "Priya",
-    "age": 24,
     "city": "Kurnool"
 }
 ```
 
-Conceptually:
+Each key maps to a corresponding value.
 
-```text
-Key      → Value
+### 7.2 Dictionary Characteristics
 
-name     → Priya
-age      → 24
-city     → Kurnool
-```
+- Mutable: entries can be added, updated, and removed.
+- Insertion-ordered: entries retain their insertion order.
+- Unique keys: assigning an existing key updates its value.
+- Key-based access: values are retrieved using keys, not positional indexes.
+- Hashable keys: lists and dictionaries cannot be used directly as keys.
 
----
-
-## Dictionary Structure
+### 7.3 Accessing Values
 
 ```python
-{
-    key: value,
-    key: value
-}
-```
-
-Example:
-
-```python
-user = {
-    "name": "John",
-    "city": "Berlin"
-}
-```
-
----
-
-# 9. Dictionary Characteristics
-
-| Property               | Dictionary |
-| ---------------------- | ---------- |
-| Stores key-value pairs | ✅ Yes      |
-| Ordered                | ✅ Yes      |
-| Allows duplicate keys  | ❌ No       |
-| Mutable                | ✅ Yes      |
-| Indexed by position    | ❌ No       |
-| Accessed using keys    | ✅ Yes      |
-
-> **Note:** Python dictionaries preserve insertion order. However, they are accessed by keys rather than positional indexes.
-
----
-
-# 10. Accessing Dictionary Values
-
-```python
-user = {
+customer = {
     "name": "John",
     "age": 25
 }
 
-print(user["name"])
-# John
-
-print(user["age"])
-# 25
+print(customer["name"])  # John
+print(customer["age"])   # 25
 ```
 
----
+Accessing a missing key using square brackets raises `KeyError`.
 
-## `get()`
-
-`get()` can be used to retrieve a value safely.
+Use `get()` when a missing key should return a default value instead.
 
 ```python
-user = {
-    "name": "John"
-}
-
-print(user.get("name"))
-# John
+print(customer.get("city"))       # None
+print(customer.get("city", "N/A"))  # N/A
 ```
 
-If the key does not exist:
+### 7.4 Adding and Updating Values
 
 ```python
-print(user.get("age"))
-# None
+customer = {"name": "John"}
+
+customer["age"] = 25       # Add a new key
+customer["age"] = 26       # Update an existing key
+
+print(customer)
+# {'name': 'John', 'age': 26}
 ```
 
-You can also provide a default value:
+### 7.5 Removing Values
 
 ```python
-print(user.get("age", 0))
-# 0
+customer = {"name": "John", "age": 25, "city": "Berlin"}
+
+age = customer.pop("age")
+print(age)       # 25
+print(customer)
 ```
 
----
+`pop()` removes the specified key and returns its value.
 
-# 11. Adding and Updating Dictionary Values
+`popitem()` removes and returns the last inserted key-value pair.
 
 ```python
-user = {
-    "name": "John"
-}
+customer = {"name": "John", "city": "Berlin"}
 
-user["age"] = 25
-
-print(user)
+last_item = customer.popitem()
+print(last_item)  # ('city', 'Berlin')
 ```
 
-Updating an existing key:
+### 7.6 Common Dictionary Methods
+
+| Method | Purpose |
+|---|---|
+| `keys()` | Returns a view of the dictionary's keys. |
+| `values()` | Returns a view of the dictionary's values. |
+| `items()` | Returns a view of key-value pairs. |
+| `get(key, default)` | Retrieves a value with an optional default. |
+| `update()` | Adds or updates entries. |
+| `pop(key)` | Removes a specified key and returns its value. |
+| `popitem()` | Removes and returns the last inserted pair. |
+| `clear()` | Removes all entries. |
+
+### 7.7 Iterating Through a Dictionary
 
 ```python
-user["age"] = 26
-```
-
----
-
-# 12. Removing Dictionary Values
-
-## `pop()`
-
-Removes a key-value pair using the key.
-
-```python
-user = {
-    "name": "John",
-    "age": 25
-}
-
-user.pop("age")
-
-print(user)
-```
-
-## `popitem()`
-
-Removes and returns the last inserted key-value pair.
-
-```python
-user = {
-    "name": "John",
-    "age": 25
-}
-
-user.popitem()
-```
-
----
-
-# 13. Dictionary Methods
-
-## `keys()`
-
-Returns the dictionary's keys.
-
-```python
-user = {
-    "name": "John",
-    "age": 25
-}
-
-print(user.keys())
-```
-
-## `values()`
-
-Returns the dictionary's values.
-
-```python
-print(user.values())
-```
-
-## `items()`
-
-Returns key-value pairs.
-
-```python
-print(user.items())
-```
-
-Example:
-
-```python
-for key, value in user.items():
-    print(key, value)
-```
-
-This is useful when you need both the key and value while looping.
-
----
-
-# 14. Dictionary Membership
-
-Dictionary membership checks keys.
-
-```python
-user = {
-    "name": "John",
-    "age": 25
-}
-
-print("name" in user)
-# True
-```
-
-It checks whether the key exists.
-
----
-
-# 15. Dictionary Keys
-
-Dictionary keys must be **hashable**.
-
-Common examples of valid keys:
-
-```python
-{
-    "name": "John",
-    1: "one",
-    (1, 2): "coordinates"
-}
-```
-
-Lists cannot be dictionary keys because lists are mutable and therefore unhashable.
-
-```python
-# Invalid
-
-{
-    [1, 2]: "value"
-}
-```
-
----
-
-# 16. Dictionary Comprehension
-
-Dictionary comprehension is used to create dictionaries in a concise way.
-
-### Basic Syntax
-
-```python
-{key_expression: value_expression for item in iterable}
-```
-
-Example:
-
-```python
-numbers = [1, 2, 3, 4]
-
-squares = {
-    num: num ** 2
-    for num in numbers
-}
-
-print(squares)
-```
-
-Output:
-
-```text
-{
-    1: 1,
-    2: 4,
-    3: 9,
-    4: 16
-}
-```
-
----
-
-# 17. Dictionary Comprehension with Condition
-
-```python
-numbers = [1, 2, 3, 4, 5]
-
-squares = {
-    num: num ** 2
-    for num in numbers
-    if num % 2 == 0
-}
-
-print(squares)
-```
-
-Output:
-
-```text
-{
-    2: 4,
-    4: 16
-}
-```
-
----
-
-# 18. Practical Dictionary Use Cases
-
-Dictionaries are particularly useful when working with structured information.
-
-## Use Case 1: API Data
-
-API responses are commonly represented using dictionaries.
-
-```python
-user = {
-    "id": 101,
-    "name": "John",
-    "city": "Berlin"
-}
-```
-
----
-
-## Use Case 2: Mapping Codes to Labels
-
-Suppose a dataset contains technical codes:
-
-```python
-status_codes = {
-    "01": "Approved",
-    "02": "In Progress",
-    "03": "Rejected"
-}
-```
-
-Instead of repeatedly working with codes, we can map them to meaningful labels.
-
-```python
-status_codes["01"]
-# Approved
-```
-
----
-
-## Use Case 3: Mapping Abbreviations
-
-```python
-abbreviations = {
-    "cust": "customer",
-    "qty": "quantity",
-    "amt": "amount"
-}
-```
-
-This can be useful when transforming technical or abbreviated dataset columns into readable names.
-
----
-
-# 19. Dictionary + Loop
-
-Dictionaries can be processed using loops.
-
-```python
-user = {
+customer = {
     "name": "John",
     "age": 25,
     "city": "Berlin"
 }
 
-for key, value in user.items():
+for key, value in customer.items():
     print(key, value)
 ```
 
@@ -944,82 +474,117 @@ age 25
 city Berlin
 ```
 
----
+Use `items()` when both the key and value are needed.
 
-# 20. List vs Tuple vs Set vs Dictionary
+### 7.8 Dictionary Membership
 
-| Feature                | List       | Tuple            | Set           | Dictionary |
-| ---------------------- | ---------- | ---------------- | ------------- | ---------- |
-| Ordered                | ✅          | ✅                | ❌             | ✅          |
-| Mutable                | ✅          | ❌                | ✅             | ✅          |
-| Duplicates             | ✅          | ✅                | ❌             | Keys ❌     |
-| Indexed                | ✅          | ✅                | ❌             | By key     |
-| Stores key-value pairs | ❌          | ❌                | ❌             | ✅          |
-| Main purpose           | Collection | Fixed collection | Unique values | Mapping    |
+The `in` operator checks dictionary keys by default.
 
----
+```python
+customer = {"name": "John", "age": 25}
 
-# 21. When Should I Use Each Data Structure?
+print("name" in customer)  # True
+print("John" in customer)  # False
+```
 
-## Use a List When:
+To check values, use:
 
-You need:
+```python
+print("John" in customer.values())  # True
+```
 
-* An ordered collection
-* Duplicate values
-* Index-based access
-* A collection that may change
+### 7.9 Valid Dictionary Keys
+
+Dictionary keys must be hashable.
+
+```python
+record = {
+    "name": "John",
+    1: "one",
+    (10, 20): "coordinates"
+}
+```
+
+A tuple can be a key if all its elements are hashable. A list cannot be used as a key because lists are mutable and unhashable.
+
+## 8. Dictionary Comprehensions
+
+Dictionary comprehensions provide a concise way to construct dictionaries from iterables.
+
+### 8.1 Basic Syntax
+
+```python
+{key_expression: value_expression for item in iterable}
+```
 
 Example:
 
 ```python
-orders = [101, 102, 103, 104]
+numbers = [1, 2, 3, 4]
+
+squares = {number: number ** 2 for number in numbers}
+
+print(squares)
+# {1: 1, 2: 4, 3: 9, 4: 16}
 ```
 
----
+### 8.2 Dictionary Comprehension with a Condition
 
-## Use a Tuple When:
+```python
+numbers = [1, 2, 3, 4, 5]
 
-You need:
+squares = {
+    number: number ** 2
+    for number in numbers
+    if number % 2 == 0
+}
 
-* An ordered collection
-* Values that should not change
-* A fixed group of values
+print(squares)
+# {2: 4, 4: 16}
+```
 
-Example:
+Dictionary comprehensions are useful for creating mappings, transforming data, and filtering key-value relationships.
+
+## 9. Comparing Data Structures
+
+| Feature | List | Tuple | Set | Dictionary |
+|---|---|---|---|---|
+| Ordered | Yes | Yes | No guaranteed order | Yes, insertion order |
+| Mutable | Yes | No | Yes | Yes |
+| Allows duplicates | Yes | Yes | No duplicate elements | Keys are unique |
+| Index-based access | Yes | Yes | No | No |
+| Key-value pairs | No | No | No | Yes |
+| Main purpose | Ordered collection | Fixed collection | Unique elements | Key-value mapping |
+
+## 10. Choosing the Right Data Structure
+
+### Use a List When
+
+You need an ordered, mutable collection that permits duplicates.
+
+```python
+orders = [101, 102, 103, 101]
+```
+
+### Use a Tuple When
+
+You need an ordered collection whose structure should remain unchanged.
 
 ```python
 coordinates = (10, 20)
 ```
 
----
+### Use a Set When
 
-## Use a Set When:
-
-You need:
-
-* Unique values
-* Fast membership checking
-* Set operations such as union/intersection
-
-Example:
+You need unique elements, membership checks, or mathematical set operations.
 
 ```python
-unique_customers = {101, 102, 103}
+unique_customer_ids = {101, 102, 103}
 ```
 
----
+### Use a Dictionary When
 
-## Use a Dictionary When:
-
-You need:
-
-* Key-value relationships
-* Fast lookup using a key
-* Structured records
-* Mapping one value to another
-
-Example:
+You need to associate values with meaningful keys.
 
 ```python
 customer = {
@@ -1029,224 +594,102 @@ customer = {
 }
 ```
 
----
+### A Simple Decision Process
 
-# 22. Quick Mental Model
+1. Need key-value mapping? Use a dictionary.
+2. Need unique elements or set operations? Use a set.
+3. Need an ordered collection that should not be structurally modified? Consider a tuple.
+4. Otherwise, a list is often a suitable starting point.
 
-Think of the four data structures like this:
+This is a guideline, not an absolute rule. Consider the operations, constraints, and readability requirements of the actual problem.
 
-```text
-LIST
-↓
-Ordered + Changeable + Duplicates allowed
+## 11. Practical Examples
 
-
-TUPLE
-↓
-Ordered + Fixed + Duplicates allowed
-
-
-SET
-↓
-Unique values + Unordered + Changeable
-
-
-DICTIONARY
-↓
-Key → Value mapping
-```
-
----
-
-# 23. Data Structure Selection
-
-When deciding which data structure to use, ask:
-
-### Question 1
-
-Do I need key-value mapping?
-
-```text
-YES → Dictionary
-NO  → Continue
-```
-
-### Question 2
-
-Do I need unique values only?
-
-```text
-YES → Set
-NO  → Continue
-```
-
-### Question 3
-
-Should the collection be immutable?
-
-```text
-YES → Tuple
-NO  → List
-```
-
----
-
-# 24. Practical Example
-
-Suppose we are analyzing customers.
-
-### List
-
-Store all customer IDs:
+### 11.1 Identifying Unique Customer IDs
 
 ```python
-customers = [101, 102, 103, 104, 101]
+customer_ids = [101, 102, 103, 101, 104, 102]
+
+unique_customer_ids = set(customer_ids)
+
+print(unique_customer_ids)
 ```
 
-Duplicates are allowed.
+The set removes duplicate IDs. Since sets do not guarantee a particular display order, do not rely on the order of the printed result.
 
-### Set
-
-Find unique customer IDs:
+If you need unique IDs while preserving their first-occurrence order, use:
 
 ```python
-unique_customers = set(customers)
+unique_customer_ids = list(dict.fromkeys(customer_ids))
 
-print(unique_customers)
+print(unique_customer_ids)
+# [101, 102, 103, 104]
 ```
 
-### Tuple
-
-Store a fixed coordinate:
+### 11.2 Mapping Status Codes to Labels
 
 ```python
-location = (17.3850, 78.4867)
-```
-
-### Dictionary
-
-Store customer information:
-
-```python
-customer = {
-    "id": 101,
-    "name": "John",
-    "city": "Berlin"
+status_codes = {
+    "01": "Approved",
+    "02": "In Progress",
+    "03": "Rejected"
 }
+
+status = status_codes.get("01", "Unknown")
+
+print(status)
+# Approved
 ```
 
----
+This pattern is useful when translating coded values into readable labels.
 
-# 25. Important Interview Points
-
-## List
-
-* Ordered
-* Mutable
-* Allows duplicates
-* Supports indexing
-* Useful for collections that change
-
-## Tuple
-
-* Ordered
-* Immutable
-* Allows duplicates
-* Supports indexing
-* Useful when values should remain fixed
-
-## Set
-
-* Stores unique values
-* Does not support positional indexing
-* Mutable
-* Useful for membership checking and mathematical set operations
-
-## Dictionary
-
-* Stores key-value pairs
-* Keys must be hashable
-* Mutable
-* Accessed using keys
-* Useful for mapping and lookups
-
----
-
-# 26. Common Interview Questions
-
-## Q1. What is the difference between List and Tuple?
-
-**List:**
+### 11.3 Transforming Abbreviated Column Names
 
 ```python
-[1, 2, 3]
-```
-
-Mutable.
-
-**Tuple:**
-
-```python
-(1, 2, 3)
-```
-
-Immutable.
-
----
-
-## Q2. Why use a Set?
-
-When you need unique values or efficient membership checking.
-
-```python
-unique_values = set([1, 2, 2, 3])
-```
-
----
-
-## Q3. Why use a Dictionary?
-
-When data has a meaningful key-value relationship.
-
-```python
-employee = {
-    "id": 101,
-    "name": "John"
+column_mapping = {
+    "cust": "customer",
+    "qty": "quantity",
+    "amt": "amount"
 }
+
+for abbreviation, full_name in column_mapping.items():
+    print(abbreviation, "->", full_name)
 ```
 
----
+Mappings like this can support consistent naming during data-cleaning workflows.
 
-## Q4. Can a Set contain duplicate values?
-
-No.
+### 11.4 Processing Structured Customer Data
 
 ```python
-my_set = {1, 1, 2, 2, 3}
+customers = [
+    {"id": 101, "name": "John", "city": "Berlin"},
+    {"id": 102, "name": "Maria", "city": "London"},
+    {"id": 103, "name": "Kumar", "city": "Hyderabad"}
+]
 
-print(my_set)
-# {1, 2, 3}
+for customer in customers:
+    print(customer["id"], customer["name"])
 ```
 
----
+This combines a list of dictionaries, a common structure for representing collections of records.
 
-## Q5. Can a Tuple be modified?
+## 12. Common Interview Questions
 
-No.
+### Q1. What is the difference between a list and a tuple?
 
-```python
-my_tuple = (1, 2, 3)
+A list is mutable, whereas a tuple is immutable at the structural level. Both are ordered and support indexing and duplicate values.
 
-# my_tuple[0] = 100
-```
+### Q2. Why use a set?
 
----
+Sets are useful for unique values, membership testing, and operations such as union, intersection, and difference.
 
-## Q6. Can a Dictionary have duplicate keys?
+### Q3. Can a set contain duplicate values?
 
-No.
+No. Duplicate elements are not retained in a set.
 
-If the same key is assigned again, the value is overwritten.
+### Q4. Can a dictionary contain duplicate keys?
+
+No. Assigning the same key more than once updates the value associated with that key.
 
 ```python
 user = {
@@ -1255,60 +698,57 @@ user = {
 }
 
 print(user)
+# {'name': 'David'}
 ```
 
-Result:
+### Q5. Can a tuple be used as a dictionary key?
 
-```python
-{"name": "David"}
-```
+Yes, provided all its elements are hashable.
+
+### Q6. What is the difference between `remove()` and `discard()` for sets?
+
+`remove()` raises `KeyError` if the element is absent. `discard()` does not raise an error when the element is missing.
+
+### Q7. What is the difference between `dictionary[key]` and `dictionary.get(key)`?
+
+Square-bracket access raises `KeyError` for a missing key. `get()` returns `None` by default or a supplied default value.
+
+### Q8. What is a comprehension?
+
+A comprehension constructs a collection concisely from an iterable, optionally applying a transformation or condition.
+
+## 13. Best Practices
+
+- Choose data structures based on the operations and constraints of your problem.
+- Use descriptive variable names.
+- Prefer comprehensions for straightforward transformations, not complicated multi-step logic.
+- Use `dict.get()` when missing keys are expected and a default is appropriate.
+- Use `discard()` when removing an optional set element.
+- Remember that set iteration order is not guaranteed.
+- Avoid modifying a collection while iterating over it unless the behavior is carefully controlled.
+- Consider memory usage and lookup requirements when processing large datasets.
+- Use consistent dictionary keys when representing structured records.
+
+## 14. Key Takeaways
+
+- **List:** Ordered, mutable, and supports duplicates.
+- **Tuple:** Ordered, structurally immutable, and supports duplicates.
+- **Set:** Stores unique, hashable elements and supports mathematical set operations.
+- **Dictionary:** Stores insertion-ordered key-value pairs with unique, hashable keys.
+- **List comprehension:** Creates lists using concise transformation and filtering expressions.
+- **Dictionary comprehension:** Builds mappings from iterables.
+- **Membership:** Use `in` to check for an element in a set or a key in a dictionary.
+- **Selection:** Choose the data structure that best matches the required operations and constraints.
+
+The key skill is not memorizing every method. It is understanding the shape of your data and selecting the structure that makes the intended operations clear and efficient.
+
+## 15. References
+
+- [Python Documentation — Built-in Types](https://docs.python.org/3/library/stdtypes.html)
+- [Python Documentation — Data Structures](https://docs.python.org/3/tutorial/datastructures.html)
+- [Python Documentation — Dictionaries](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
+- [Python Documentation — Set Types](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
 
 ---
 
-# 27. Key Takeaways
-
-```text
-LIST
-→ Ordered
-→ Mutable
-→ Duplicates allowed
-→ Indexed
-
-
-TUPLE
-→ Ordered
-→ Immutable
-→ Duplicates allowed
-→ Indexed
-
-
-SET
-→ Unique values
-→ No positional indexing
-→ Mutable
-→ Useful for membership and set operations
-
-
-DICTIONARY
-→ Key-value pairs
-→ Mutable
-→ Keys must be hashable
-→ Access using keys
-```
-
-The most important skill is not memorizing methods.
-
-The important question is:
-
-> **"What kind of data do I have, and what operation do I need to perform?"**
-
-Then choose the appropriate data structure.
-
----
-
-## Why This Matters
-
-Data structures determine **how you store, access, modify, and organize data** in Python.
-
-Understanding when to use a list, tuple, set, or dictionary is essential before moving into topics such as functions, file handling, APIs, data processing, Pandas, automation, and AI-related development.
-
+*Part of the Python Learning Journey — a structured collection of concepts, examples, and practical programming notes.*
