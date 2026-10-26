@@ -1,29 +1,35 @@
-# 🐍 Python Modules & Packages
+# 🐍 Python Error Handling
 
-Learn how to organize Python code using modules and packages, work with libraries, manage dependencies using `pip`, and explore modern Python project management with `uv`.
+Learn how to identify Python errors, handle exceptions, understand tracebacks, raise exceptions intentionally, and create custom exceptions for application-specific situations.
 
-This section covers the tools and concepts that help transform individual Python scripts into organized, reusable, and maintainable projects.
+This section focuses on writing Python programs that handle expected failures gracefully, provide meaningful error messages, and remain easier to debug and maintain.
 
 ---
 
 ## 📚 Table of Contents
 
 - [Learning Objectives](#-learning-objectives)
-- [1. Modules](#1-modules)
-  - [Creating a Module](#creating-a-module)
-  - [Importing Modules](#importing-modules)
-- [2. Packages](#2-packages)
-- [3. Libraries](#3-libraries)
-- [4. Standard Library vs External Libraries](#4-standard-library-vs-external-libraries)
-- [5. pip — Python Package Installer](#5-pip--python-package-installer)
-- [6. uv — Modern Python Project Manager](#6-uv--modern-python-project-manager)
-  - [Traditional Workflow](#traditional-workflow)
-  - [Workflow with uv](#workflow-with-uv)
-- [7. pip vs uv](#7-pip-vs-uv)
-- [8. Project Structure with uv](#8-project-structure-with-uv)
-- [9. Module vs Package vs Library](#9-module-vs-package-vs-library)
-- [10. Best Practices](#10-best-practices)
-- [Key Takeaways](#-key-takeaways)
+- [1. Understanding Python Errors](#1-understanding-python-errors)
+- [2. Common Python Exceptions](#2-common-python-exceptions)
+- [3. What Is Exception Handling?](#3-what-is-exception-handling)
+- [4. Handling Exceptions with `try` and `except`](#4-handling-exceptions-with-try-and-except)
+- [5. Catching Specific Exceptions](#5-catching-specific-exceptions)
+- [6. Accessing Exception Information](#6-accessing-exception-information)
+- [7. Understanding Tracebacks](#7-understanding-tracebacks)
+- [8. Python Exception Hierarchy](#8-python-exception-hierarchy)
+- [9. The `else` Block](#9-the-else-block)
+- [10. The `finally` Block](#10-the-finally-block)
+- [11. Combining `try`, `except`, `else`, and `finally`](#11-combining-try-except-else-and-finally)
+- [12. Raising Exceptions with `raise`](#12-raising-exceptions-with-raise)
+- [13. `raise` vs `except`](#13-raise-vs-except)
+- [14. Creating Custom Exceptions](#14-creating-custom-exceptions)
+- [15. When to Use Custom Exceptions](#15-when-to-use-custom-exceptions)
+- [16. Error Handling vs Error Prevention](#16-error-handling-vs-error-prevention)
+- [17. Exception Handling Flow](#17-exception-handling-flow)
+- [18. Best Practices](#18-best-practices)
+- [19. Common Mistakes](#19-common-mistakes)
+- [Key Concepts](#-key-concepts)
+- [Learning Takeaway](#-learning-takeaway)
 - [Learning Resources](#-learning-resources)
 
 ---
@@ -32,681 +38,1348 @@ This section covers the tools and concepts that help transform individual Python
 
 By the end of this section, you should understand:
 
-- What modules, packages, and libraries are.
-- How to create and import Python modules.
-- How packages help organize larger projects.
-- The difference between the Python Standard Library and external libraries.
-- How to install and manage packages using `pip`.
-- What `uv` does and how it simplifies Python project management.
-- The purpose of `pyproject.toml` and virtual environments.
-- How dependencies fit into a maintainable Python project.
+- The difference between syntax errors and exceptions.
+- Common built-in Python exceptions and when they occur.
+- How to handle exceptions using `try` and `except`.
+- When to catch specific exceptions instead of using a broad handler.
+- How to access exception messages and understand tracebacks.
+- The purpose of `else` and `finally`.
+- How to raise exceptions using `raise`.
+- How to create and handle custom exceptions.
+- How to write reliable, maintainable error-handling code.
 
 ---
 
-## 1. Modules
+## 1. Understanding Python Errors
 
-A **module** is a Python file (`.py`) containing reusable code, such as functions, classes, and variables.
+Errors can occur at different stages of a program.
 
-Modules help you:
+Two important categories to understand are **syntax errors** and **exceptions**.
 
-- Organize code into smaller, manageable files.
-- Reuse functionality across multiple programs.
-- Avoid duplicating code.
-- Keep projects easier to maintain and understand.
+### 1.1 Syntax Errors
 
-### Creating a Module
+A syntax error occurs when Python cannot parse code because it violates the language's syntax rules.
 
-Suppose you want to create reusable mathematical functions.
-
-Create a file named `math_utils.py`:
+Example:
 
 ```python
-# math_utils.py
-
-def add(a, b):
-    return a + b
-
-
-def subtract(a, b):
-    return a - b
+if True
+    print("Hello")
 ```
 
-This file is a module named `math_utils`.
+The colon after `True` is missing.
 
-### Importing Modules
+Python reports a `SyntaxError`, and the code cannot execute as written.
 
-Create another file named `main.py`:
+**Correct version:**
 
 ```python
-# main.py
+if True:
+    print("Hello")
+```
 
-import math_utils
+### 1.2 Exceptions
 
-print(math_utils.add(10, 20))
-print(math_utils.subtract(20, 5))
+An exception occurs when a problem arises during program execution.
+
+The code may be syntactically valid, but an operation fails at runtime.
+
+Example:
+
+```python
+a = 10
+b = 0
+
+print(a / b)
+```
+
+The syntax is valid, but dividing a number by zero raises:
+
+```text
+ZeroDivisionError: division by zero
+```
+
+### Syntax Errors vs Exceptions
+
+| Aspect | Syntax Error | Exception |
+|---|---|---|
+| When it occurs | During parsing or syntax analysis | During execution |
+| Cause | Invalid Python syntax | An operation or condition causes a runtime failure |
+| Example | Missing colon after an `if` statement | Dividing by zero |
+| Can `try` handle it at runtime? | Not when the syntax error prevents the containing code from being parsed | Yes, if the exception is raised within the protected execution and a matching handler exists |
+
+**Key idea:** Syntax errors prevent Python from interpreting the code correctly. Exceptions occur when an operation fails during execution.
+
+---
+
+## 2. Common Python Exceptions
+
+Python provides built-in exception types for different kinds of errors.
+
+Understanding them helps you identify problems and choose appropriate handling strategies.
+
+### 2.1 `IndexError`
+
+Occurs when a sequence is accessed using an index that does not exist.
+
+```python
+numbers = [10, 20, 30]
+
+print(numbers[100])
 ```
 
 **Output:**
 
 ```text
-30
-15
+IndexError: list index out of range
 ```
 
-When you import `math_utils`, you can access its functions using the module name followed by a dot.
+The list contains only three elements, so index `100` is invalid.
+
+### 2.2 `KeyError`
+
+Occurs when a dictionary lookup requests a key that does not exist.
 
 ```python
-math_utils.add(10, 20)
-```
-
-### Importing Specific Functions
-
-You can import individual functions directly:
-
-```python
-from math_utils import add
-
-print(add(10, 20))
-```
-
-You can also import multiple functions:
-
-```python
-from math_utils import add, subtract
-
-print(add(10, 20))
-print(subtract(20, 5))
-```
-
-### Importing with an Alias
-
-An alias provides an alternative name for an imported module or function.
-
-```python
-import math_utils as mu
-
-print(mu.add(10, 20))
-```
-
-Aliases are particularly common when importing third-party libraries:
-
-```python
-import pandas as pd
-import numpy as np
-```
-
-**Key idea:** Modules allow you to separate reusable functionality from the code that uses it.
-
----
-
-## 2. Packages
-
-A **package** organizes related Python modules into a directory structure.
-
-Packages become useful when a project grows beyond a few files and its functionality needs to be divided into logical components.
-
-### Example Package Structure
-
-```text
-my_project/
-│
-├── main.py
-│
-└── utilities/
-    ├── __init__.py
-    ├── math_utils.py
-    └── string_utils.py
-```
-
-Here:
-
-- `utilities/` is the package directory.
-- `math_utils.py` contains mathematical functions.
-- `string_utils.py` contains string-related functions.
-- `__init__.py` can mark the directory as a regular Python package and optionally define package initialization behavior.
-
-Modern Python also supports **namespace packages**, which can work without an `__init__.py` file.
-
-### Importing from a Package
-
-Suppose `math_utils.py` contains:
-
-```python
-# utilities/math_utils.py
-
-def add(a, b):
-    return a + b
-```
-
-You can import the function from `main.py`:
-
-```python
-# main.py
-
-from utilities.math_utils import add
-
-print(add(10, 20))
-```
-
-**Output:**
-
-```text
-30
-```
-
-As a project grows, packages help group related functionality together.
-
-For example, a data analytics application might organize code into packages for data loading, cleaning, analysis, and visualization.
-
-**Key idea:** A package helps organize related modules into a structured project.
-
----
-
-## 3. Libraries
-
-A **library** is a collection of reusable functionality designed to help developers perform particular tasks without implementing everything from scratch.
-
-Libraries can contain modules, packages, classes, functions, and other components.
-
-### Common Python Libraries
-
-| Library | Primary Purpose |
-|---|---|
-| **Pandas** | Data manipulation and analysis |
-| **NumPy** | Numerical computing and array operations |
-| **Matplotlib** | Data visualization |
-| **Requests** | Making HTTP requests |
-| **scikit-learn** | Machine learning |
-| **Seaborn** | Statistical data visualization |
-
-### Example: Using Pandas
-
-After installing Pandas, you can import and use it:
-
-```python
-import pandas as pd
-
-data = {
-    "Name": ["Priya", "Anu", "Rahul"],
-    "Score": [85, 90, 78]
+employee = {
+    "name": "Priya",
+    "age": 24
 }
 
-df = pd.DataFrame(data)
-
-print(df)
+print(employee["salary"])
 ```
 
-Pandas provides the `DataFrame` structure, allowing you to work with tabular data without building that functionality yourself.
+**Output:**
 
-**Key idea:** Libraries provide reusable functionality for common programming tasks.
+```text
+KeyError: 'salary'
+```
 
-> **Note:** The terms *module*, *package*, and *library* are related, but they are not interchangeable. A module is a Python code unit, a package organizes modules, and a library is a broader term for reusable functionality.
+### 2.3 `TypeError`
+
+Occurs when an operation or function receives an inappropriate type of object.
+
+```python
+result = "hello" + 10
+```
+
+**Output:**
+
+```text
+TypeError
+```
+
+Python cannot concatenate a string and an integer using this operation.
+
+### 2.4 `ValueError`
+
+Occurs when an operation receives an argument of an appropriate general type but an invalid value.
+
+```python
+number = int("abc")
+```
+
+**Output:**
+
+```text
+ValueError: invalid literal for int() with base 10: 'abc'
+```
+
+The string is a valid argument type for `int()`, but its contents cannot be converted into an integer.
+
+### 2.5 `NameError`
+
+Occurs when Python cannot find the name being referenced.
+
+```python
+print(customer_name)
+```
+
+If `customer_name` has not been defined in the accessible scope, Python raises a `NameError`.
+
+### 2.6 `AttributeError`
+
+Occurs when an object does not provide the requested attribute or method.
+
+```python
+numbers = [1, 2, 3]
+
+numbers.upper()
+```
+
+**Output:**
+
+```text
+AttributeError
+```
+
+Lists do not provide an `upper()` method.
+
+### 2.7 `ZeroDivisionError`
+
+Occurs when an arithmetic division operation uses zero as its divisor.
+
+```python
+result = 10 / 0
+```
+
+**Output:**
+
+```text
+ZeroDivisionError: division by zero
+```
+
+### 2.8 `FileNotFoundError`
+
+Occurs when an operation attempts to access a file that cannot be found at the specified path.
+
+```python
+with open("missing_file.txt", "r") as file:
+    content = file.read()
+```
+
+If the file does not exist at the specified location, Python raises a `FileNotFoundError`.
+
+### 2.9 `ModuleNotFoundError`
+
+Occurs when Python cannot locate a module being imported.
+
+```python
+import nonexistent_module
+```
+
+Python raises a `ModuleNotFoundError`.
+
+This can happen because the module does not exist, is unavailable in the active environment, or cannot be found through Python's import system.
+
+### Quick Reference
+
+| Exception | Typical Cause |
+|---|---|
+| `SyntaxError` | Invalid Python syntax |
+| `IndexError` | Invalid sequence index |
+| `KeyError` | Missing dictionary key |
+| `TypeError` | Operation used with an inappropriate type |
+| `ValueError` | Invalid value supplied to an operation |
+| `NameError` | Undefined or inaccessible name |
+| `AttributeError` | Missing attribute or method |
+| `ZeroDivisionError` | Division by zero |
+| `FileNotFoundError` | File cannot be found |
+| `ModuleNotFoundError` | Module cannot be located |
 
 ---
 
-## 4. Standard Library vs External Libraries
+## 3. What Is Exception Handling?
 
-Python code can use functionality from the Standard Library or from separately installed packages.
+**Exception handling** is the process of responding to runtime errors so that a program can recover, report a problem, clean up resources, or terminate in a controlled way.
 
-### 4.1 Python Standard Library
-
-The **Python Standard Library** is distributed with Python and provides functionality for common programming tasks.
-
-Examples include:
+Consider this example:
 
 ```python
-import math
-import os
-import datetime
-import json
+numerator = 10
+denominator = 0
+
+print(numerator / denominator)
 ```
 
-Some examples of what these modules provide:
+Without exception handling, the unhandled `ZeroDivisionError` stops normal execution of the current operation and produces a traceback.
 
-| Module | Purpose |
-|---|---|
-| `math` | Mathematical functions |
-| `os` | Operating-system interfaces |
-| `datetime` | Working with dates and times |
-| `json` | Encoding and decoding JSON |
-| `pathlib` | Working with filesystem paths |
-| `csv` | Reading and writing CSV files |
+Exception handling allows us to define what should happen when an expected failure occurs.
 
 For example:
 
 ```python
-import math
+numerator = 10
+denominator = 0
 
-print(math.sqrt(25))
-print(math.pi)
+try:
+    result = numerator / denominator
+
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
 ```
 
 **Output:**
 
 ```text
-5.0
-3.141592653589793
+Cannot divide by zero.
 ```
 
-These modules do not require a separate `pip install` command.
+Instead of allowing the exception to remain unhandled, the program catches it and displays a meaningful message.
 
-### 4.2 External Libraries
+**Key idea:** Exception handling helps a program respond to failures deliberately instead of allowing every runtime error to terminate normal execution unexpectedly.
 
-External libraries are distributed separately from Python itself and generally need to be installed before they can be imported.
+---
 
-For example, to install Pandas:
+## 4. Handling Exceptions with `try` and `except`
 
-```bash
-python -m pip install pandas
-```
+Python uses `try` and `except` to handle exceptions.
 
-Then import it:
+### Basic Structure
 
 ```python
-import pandas as pd
+try:
+    # Code that may raise an exception
+
+except SomeException:
+    # Code that handles the exception
 ```
 
-External libraries extend Python's capabilities for tasks such as data analysis, web development, automation, and machine learning.
+- **`try`** — Contains code that may raise an exception.
+- **`except`** — Handles a matching exception raised while executing the `try` block.
 
-**Important distinction:**
+### Example
 
-- **Standard Library:** Distributed with Python.
-- **External Library:** Installed separately when required.
+```python
+try:
+    numerator = 10
+    denominator = 0
 
----
+    result = numerator / denominator
 
-## 5. pip — Python Package Installer
+    print(result)
 
-`pip` is Python's commonly used package installer. It installs packages from package indexes and can manage installed package versions.
-
-### Common pip Commands
-
-**Install a package:**
-
-```bash
-python -m pip install pandas
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
 ```
 
-**Upgrade a package:**
-
-```bash
-python -m pip install --upgrade pandas
-```
-
-**Uninstall a package:**
-
-```bash
-python -m pip uninstall pandas
-```
-
-**Display installed packages:**
-
-```bash
-python -m pip list
-```
-
-**Display information about a package:**
-
-```bash
-python -m pip show pandas
-```
-
-**Save installed package information to a requirements file:**
-
-```bash
-python -m pip freeze > requirements.txt
-```
-
-**Install dependencies listed in a requirements file:**
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-### Why Use `python -m pip`?
-
-Using:
-
-```bash
-python -m pip install pandas
-```
-
-runs `pip` through the selected Python interpreter.
-
-This can help avoid accidentally installing a package into a different Python installation than the one used to run your program.
-
-### Mental Model
-
-> `pip` installs and manages Python packages.
-
-**Important:** A virtual environment helps isolate project dependencies. When working on a project, activate its virtual environment before installing packages, or explicitly use that environment's Python interpreter.
-
----
-
-## 6. uv — Modern Python Project Manager
-
-[`uv`](https://docs.astral.sh/uv/) is a fast Python package and project management tool written in Rust.
-
-It provides workflows for tasks that might otherwise require several separate commands or tools, including:
-
-- Creating Python projects.
-- Managing Python versions.
-- Creating virtual environments.
-- Installing packages.
-- Managing project dependencies.
-- Running Python scripts and project commands.
-
-### Traditional Workflow
-
-A traditional workflow might begin by creating a virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-Activate it before installing dependencies.
-
-**Windows — Command Prompt:**
-
-```bash
-.venv\Scripts\activate
-```
-
-**Windows — PowerShell:**
-
-```powershell
-.venv\Scripts\Activate.ps1
-```
-
-**macOS / Linux:**
-
-```bash
-source .venv/bin/activate
-```
-
-Then install a package:
-
-```bash
-python -m pip install pandas
-```
-
-You would also create your project files and manage dependency information as needed.
-
-### Workflow with uv
-
-`uv` can simplify several of these steps.
-
-#### Step 1: Create a Project
-
-```bash
-uv init my-project
-```
-
-This initializes a new project with a basic structure and project configuration.
-
-#### Step 2: Navigate into the Project
-
-```bash
-cd my-project
-```
-
-#### Step 3: Add a Dependency
-
-```bash
-uv add pandas
-```
-
-This adds Pandas as a project dependency and updates the project's dependency configuration and lockfile.
-
-#### Step 4: Run the Project
-
-```bash
-uv run main.py
-```
-
-`uv run` runs the script within the project's managed environment and ensures the project dependencies are available.
-
-The exact files generated by `uv init` can vary depending on the project type and options used.
-
-### Why Use uv?
-
-Compared with a workflow involving separate tools and manual steps, `uv` can bring project setup, dependency management, environment management, and execution into one consistent workflow.
-
-**Key idea:** `uv` is more than a package installer; it also provides project and environment management features.
-
----
-
-## 7. pip vs uv
-
-Both tools can install and manage Python dependencies, but their scope differs.
-
-| Feature | `pip` | `uv` |
-|---|---|---|
-| Install Python packages | Yes | Yes |
-| Upgrade packages | Yes | Yes |
-| Uninstall packages | Yes | Yes |
-| Create virtual environments | Not its primary role; use `venv` | Yes |
-| Initialize Python projects | No | Yes |
-| Manage project dependencies | Commonly used with additional project configuration | Yes |
-| Support lockfiles for reproducible project environments | Usually used with additional tools or workflows | Yes |
-| Manage Python versions | No | Yes |
-| Typical workflow | Package installation and dependency management | Integrated project, environment, and dependency management |
-
-### Does uv Replace pip?
-
-Not entirely in the conceptual sense.
-
-`pip` remains a widely used package installer, and understanding it is valuable when working with existing Python projects.
-
-`uv` offers a broader, integrated workflow and can perform many package-management tasks that developers traditionally handle with `pip` and other tools.
-
-### Which Should You Learn?
-
-For a beginner learning Python:
-
-1. Understand how `pip` installs packages.
-2. Learn why virtual environments are useful.
-3. Understand how project dependencies are recorded.
-4. Learn `uv` to simplify project setup and dependency management.
-
-**Recommendation:** Understand the underlying concepts first, then choose the workflow that best fits your project.
-
----
-
-## 8. Project Structure with uv
-
-A project initialized with `uv` may have a structure similar to this:
+**Output:**
 
 ```text
-my-project/
-│
-├── .git/
-├── .gitignore
-├── .python-version
-├── .venv/
-├── main.py
-├── pyproject.toml
-├── uv.lock
-└── README.md
+Cannot divide by zero.
 ```
 
-The exact structure depends on how the project is initialized and configured.
+When Python encounters the division by zero, it skips the remaining statements in the `try` block and looks for a matching `except` handler.
 
-### Important Files and Directories
+Because the handler matches `ZeroDivisionError`, the program executes its code.
 
-| File / Directory | Purpose |
+### Important Behavior
+
+If an exception occurs in the `try` block:
+
+1. Python stops executing the remaining statements in that block.
+2. Python looks for a matching exception handler.
+3. If a matching handler is found, its code executes.
+4. If no matching handler exists, the exception propagates to the calling code.
+
+If no exception occurs, the `except` block is skipped.
+
+---
+
+## 5. Catching Specific Exceptions
+
+It is generally better to catch the exceptions you expect rather than catch every possible exception indiscriminately.
+
+### Avoid Catching Everything Blindly
+
+```python
+try:
+    result = 10 / 0
+
+except:
+    print("Something went wrong.")
+```
+
+This catches a broad range of exceptions, including exceptions that you may not intend to handle.
+
+It can hide programming errors and make debugging difficult.
+
+### Prefer a Specific Exception
+
+```python
+try:
+    result = 10 / 0
+
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+```
+
+This communicates exactly which problem the program expects to handle.
+
+### Handling Multiple Exception Types
+
+A program can handle different exceptions separately.
+
+```python
+try:
+    number = int(input("Enter a number: "))
+    result = 100 / number
+
+except ValueError:
+    print("Please enter a valid integer.")
+
+except ZeroDivisionError:
+    print("The number cannot be zero.")
+```
+
+If the input is not a valid integer, Python raises `ValueError`.
+
+If the input is `0`, Python raises `ZeroDivisionError`.
+
+Each error receives a different response.
+
+**Key idea:** Catch exceptions at the point where you can respond to them meaningfully.
+
+---
+
+## 6. Accessing Exception Information
+
+You can use `as` to bind an exception object to a variable.
+
+This makes its information available inside the handler.
+
+### Example
+
+```python
+try:
+    number = int("abc")
+
+except ValueError as error:
+    print("Conversion failed:", error)
+```
+
+**Output:**
+
+```text
+Conversion failed: invalid literal for int() with base 10: 'abc'
+```
+
+Here, `error` refers to the exception object.
+
+You can use it to inspect or report the error message.
+
+### Why Is This Useful?
+
+Exception information can help you:
+
+- Understand why an operation failed.
+- Display an informative error message.
+- Record diagnostic information in logs.
+- Investigate problems during debugging.
+
+However, avoid exposing sensitive internal details to end users. Detailed diagnostic information is often better suited to application logs.
+
+---
+
+## 7. Understanding Tracebacks
+
+A **traceback** shows the sequence of calls that led to an unhandled exception.
+
+It commonly includes:
+
+- The file in which the problem occurred.
+- The line number associated with the failure.
+- The sequence of function calls leading to the failure.
+- The exception type and message.
+
+Example:
+
+```python
+def calculate_total():
+    return 10 / 0
+
+
+def main():
+    calculate_total()
+
+
+main()
+```
+
+When this code runs without exception handling, Python displays a traceback showing the calls from `main()` to `calculate_total()` and the resulting `ZeroDivisionError`.
+
+### How to Read a Traceback
+
+When debugging:
+
+1. Read the exception type and message at the end.
+2. Identify the line where the exception occurred.
+3. Trace the function calls to understand how execution reached that line.
+4. Inspect the relevant values and assumptions.
+5. Fix the underlying problem rather than merely hiding the error.
+
+### Traceback vs Exception Message
+
+| Term | Meaning |
 |---|---|
-| `.git/` | Stores Git repository metadata, if the directory is a Git repository |
-| `.gitignore` | Specifies files Git should ignore |
-| `.python-version` | Can specify the Python version used by the project |
-| `.venv/` | Contains the project's virtual environment |
-| `main.py` | An example Python entry-point script |
-| `pyproject.toml` | Stores project metadata, configuration, and dependency declarations |
-| `uv.lock` | Records resolved dependency versions for reproducible environments |
-| `README.md` | Describes the project and explains how to use it |
+| Exception | The object representing a runtime failure |
+| Exception message | A description of the specific failure |
+| Traceback | Information about the call sequence and location associated with the exception |
 
-### Understanding `pyproject.toml`
-
-The `pyproject.toml` file is a standard configuration file used by Python projects.
-
-It can contain:
-
-- Project name and version.
-- Project metadata.
-- Declared dependencies.
-- Build-system configuration.
-- Tool-specific settings.
-
-For example, a simplified project configuration might look like this:
-
-```toml
-[project]
-name = "my-project"
-version = "0.1.0"
-requires-python = ">=3.12"
-dependencies = [
-    "pandas",
-]
-```
-
-This example illustrates the general structure of project metadata and dependencies. Actual projects may contain additional configuration.
-
-When using `uv add pandas`, `uv` updates the project configuration to record the dependency.
-
-### Understanding `uv.lock`
-
-The `uv.lock` file records the resolved dependency versions and related information for the project.
-
-This helps different environments install compatible dependency versions and makes project setup more reproducible.
-
-### Should You Commit `.venv/` to Git?
-
-**Generally, no.**
-
-The virtual environment contains locally installed packages and environment-specific files. It can usually be recreated from the project's dependency configuration and lockfile.
-
-A typical `.gitignore` includes:
-
-```gitignore
-.venv/
-__pycache__/
-*.py[cod]
-```
-
-For projects using `uv`, committing `pyproject.toml` and `uv.lock` is generally useful so other developers can understand and recreate the project's dependency environment.
+**Key idea:** A traceback is a debugging tool, not just an error message.
 
 ---
 
-## 9. Module vs Package vs Library
+## 8. Python Exception Hierarchy
 
-These terms describe related but different concepts.
+Python organizes exceptions into a class hierarchy.
 
-| Concept | Meaning | Example |
-|---|---|---|
-| **Module** | A Python file containing reusable code | `math_utils.py` |
-| **Package** | A structure that organizes related modules | `utilities/` |
-| **Library** | A collection of reusable functionality | Pandas, NumPy |
-| **Standard Library** | Modules distributed with Python | `math`, `json` |
-| **External Library** | Functionality distributed separately from Python | Pandas, Requests |
-| **Package Manager** | A tool used to install and manage packages | `pip`, `uv` |
-| **Virtual Environment** | An isolated Python environment for a project | `.venv/` |
-| **Project Configuration** | A file containing project metadata and dependencies | `pyproject.toml` |
+At a simplified level:
+
+```text
+BaseException
+│
+├── SystemExit
+├── KeyboardInterrupt
+├── GeneratorExit
+└── Exception
+    │
+    ├── ArithmeticError
+    │   └── ZeroDivisionError
+    │
+    ├── LookupError
+    │   ├── IndexError
+    │   └── KeyError
+    │
+    ├── TypeError
+    ├── ValueError
+    ├── NameError
+    ├── AttributeError
+    ├── OSError
+    │   └── FileNotFoundError
+    └── ImportError
+        └── ModuleNotFoundError
+```
+
+This diagram illustrates selected relationships rather than every exception in Python.
+
+### Why Does the Hierarchy Matter?
+
+Exception inheritance allows you to handle related exceptions using a common base class.
+
+For example:
+
+```python
+try:
+    result = 10 / 0
+
+except ArithmeticError:
+    print("An arithmetic error occurred.")
+```
+
+`ZeroDivisionError` is a subclass of `ArithmeticError`, so this handler can catch it.
+
+### Why Prefer `Exception` Over `BaseException`?
+
+Most application-level exceptions inherit from `Exception`.
+
+A handler such as:
+
+```python
+except Exception:
+    ...
+```
+
+can catch many ordinary runtime exceptions.
+
+By contrast, `BaseException` also includes special exceptions such as `KeyboardInterrupt` and `SystemExit`, which are generally not meant to be swallowed by ordinary application error handlers.
+
+**Best practice:** Catch specific exception types whenever practical. Use broader handlers only when their behavior is intentional.
+
+---
+
+## 9. The `else` Block
+
+Python provides an optional `else` block for `try` statements.
+
+The `else` block executes **only when the `try` block completes without raising an exception**.
+
+### Example
+
+```python
+try:
+    result = 10 / 2
+
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+
+else:
+    print("Calculation successful.")
+    print("Result:", result)
+```
+
+**Output:**
+
+```text
+Calculation successful.
+Result: 5.0
+```
+
+If the division raises `ZeroDivisionError`, the `except` block executes instead, and the `else` block is skipped.
+
+### Why Use `else`?
+
+The `else` block separates successful-operation logic from the code being monitored for exceptions.
+
+This can make it easier to identify which operation is expected to fail.
+
+For example:
+
+```python
+try:
+    number = int("25")
+
+except ValueError:
+    print("Invalid number.")
+
+else:
+    print("Converted number:", number)
+```
+
+**Key idea:** Use `else` for code that should execute only after the `try` block succeeds.
+
+---
+
+## 10. The `finally` Block
+
+The `finally` block contains code that normally executes whether the `try` block succeeds or an exception occurs.
+
+It is commonly used for cleanup operations.
+
+### Example
+
+```python
+try:
+    result = 10 / 2
+    print("Result:", result)
+
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+
+finally:
+    print("Execution finished.")
+```
+
+**Output:**
+
+```text
+Result: 5.0
+Execution finished.
+```
+
+If the division is changed to `10 / 0`, the `except` block handles the error, and the `finally` block still executes.
+
+### Common Uses
+
+The `finally` block can be useful for:
+
+- Releasing resources.
+- Closing connections.
+- Cleaning up temporary state.
+- Performing final operations before control leaves the construct.
+
+### Important Note
+
+For file handling, Python's `with` statement is usually preferable because it manages the file's lifecycle automatically.
+
+For example:
+
+```python
+with open("data.txt", "r") as file:
+    content = file.read()
+```
+
+The file is closed automatically when execution leaves the `with` block, including when an exception occurs.
+
+**Key idea:** Use `finally` when cleanup logic must run after the `try`/`except` process, regardless of its normal outcome.
+
+---
+
+## 11. Combining `try`, `except`, `else`, and `finally`
+
+All four blocks can be used together.
+
+### Structure
+
+```python
+try:
+    # Code that may raise an exception
+
+except SomeException:
+    # Handle the exception
+
+else:
+    # Execute when try succeeds
+
+finally:
+    # Execute during normal exit from the construct
+```
+
+### Example
+
+```python
+try:
+    numerator = 10
+    denominator = 2
+
+    result = numerator / denominator
+
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+
+else:
+    print("Calculation successful.")
+    print("Result:", result)
+
+finally:
+    print("Execution finished.")
+```
+
+**Output:**
+
+```text
+Calculation successful.
+Result: 5.0
+Execution finished.
+```
+
+### Role of Each Block
+
+| Block | Purpose |
+|---|---|
+| `try` | Executes the operation that may fail |
+| `except` | Handles a matching exception |
+| `else` | Executes if the `try` block completes without an exception |
+| `finally` | Executes during normal control flow leaving the construct, whether an exception occurred or not |
+
+**Remember:** An exception raised inside an `except` or `else` block is not caught by another handler belonging to the same `try` statement. The `finally` block still executes during normal exception propagation.
+
+---
+
+## 12. Raising Exceptions with `raise`
+
+Python allows you to raise an exception explicitly using the `raise` keyword.
+
+This is useful when a program detects an invalid condition that should not be allowed to continue.
+
+### Example: Validating an Age
+
+```python
+age = -5
+
+if age < 0:
+    raise ValueError("Age cannot be negative.")
+```
+
+Python raises:
+
+```text
+ValueError: Age cannot be negative.
+```
+
+The exception communicates that the supplied value violates the expected rule.
+
+### Example: Validating a Withdrawal
+
+```python
+balance = 500
+withdrawal = 1000
+
+if withdrawal > balance:
+    raise ValueError("Insufficient balance.")
+```
+
+The arithmetic comparison is valid, but the withdrawal violates the application's business rule.
+
+A more domain-specific exception could also be appropriate, as discussed in the next section.
+
+### Re-raising an Exception
+
+Inside an exception handler, `raise` without an argument re-raises the currently handled exception.
+
+```python
+try:
+    result = 10 / 0
+
+except ZeroDivisionError:
+    print("An arithmetic error occurred.")
+    raise
+```
+
+The message is printed, but the exception is raised again and can propagate to a higher-level handler.
+
+This is useful when you want to perform local logging or cleanup without suppressing the original failure.
+
+**Key idea:** Use `raise` when a condition should be communicated as an exception rather than treated as a successful result.
+
+---
+
+## 13. `raise` vs `except`
+
+These keywords serve different purposes.
+
+### `raise`
+
+Explicitly raises an exception.
+
+```python
+raise ValueError("Invalid amount.")
+```
+
+### `except`
+
+Handles a matching exception.
+
+```python
+try:
+    raise ValueError("Invalid amount.")
+
+except ValueError as error:
+    print("Handled:", error)
+```
+
+**Output:**
+
+```text
+Handled: Invalid amount.
+```
+
+### Comparison
+
+| `raise` | `except` |
+|---|---|
+| Triggers an exception | Handles a matching exception |
+| Can communicate an invalid condition | Defines how to respond to a failure |
+| Can cause execution to leave the current code path | Executes when a matching exception is caught |
 
 ### Mental Model
 
 ```text
-Module
+raise
   ↓
-A Python file containing reusable code
-
-Package
+An exception is triggered
   ↓
-Organizes related modules
-
-Library
+Python searches for a matching handler
   ↓
-Provides reusable functionality
-
-Package Manager
-  ↓
-Installs and manages packages
-
-Virtual Environment
-  ↓
-Isolates a project's Python dependencies
+except handles the exception
 ```
 
-Remember that this is a simplified conceptual model. In practice, the terms *package* and *library* can overlap, and a library does not have to correspond to one particular package structure.
+If no matching handler is found, the exception propagates up the call stack.
 
 ---
 
-## 10. Best Practices
+## 14. Creating Custom Exceptions
 
-When working with modules, packages, and dependencies, follow these practices:
+Python provides many built-in exceptions, but applications sometimes need exception types that describe their own business rules.
 
-- **Keep modules focused:** Give each module a clear responsibility.
-- **Use descriptive names:** Prefer names such as `data_cleaning.py` over vague names such as `helper.py` when the purpose is known.
-- **Avoid unnecessary duplication:** Put reusable logic in functions or modules.
-- **Use clear imports:** Import only what you need when that improves readability.
-- **Use virtual environments:** Isolate dependencies between projects.
-- **Track dependencies:** Record the packages a project needs.
-- **Use lockfiles where appropriate:** Help make dependency installation reproducible.
-- **Avoid committing `.venv/`:** Recreate the environment instead of storing it in Git.
-- **Understand your tools:** Learn what `pip`, `venv`, `pyproject.toml`, and `uv` each do.
-- **Document setup instructions:** Explain how another developer can install dependencies and run the project.
+A **custom exception** is an exception class defined by the developer.
+
+Custom exceptions normally inherit from `Exception`.
+
+### 14.1 Creating a Basic Custom Exception
+
+```python
+class MyException(Exception):
+    pass
+```
+
+Here:
+
+- `MyException` is the custom exception class.
+- `Exception` is its parent class.
+- `pass` indicates that the class has no additional implementation.
+
+### 14.2 Raising a Custom Exception
+
+```python
+raise MyException("Something went wrong.")
+```
+
+Python raises an instance of `MyException`.
+
+### 14.3 Handling a Custom Exception
+
+```python
+class MyException(Exception):
+    pass
+
+
+try:
+    raise MyException("Something went wrong.")
+
+except MyException as error:
+    print(error)
+```
+
+**Output:**
+
+```text
+Something went wrong.
+```
+
+Because the exception inherits from `Exception`, it can be handled like other ordinary application-level exceptions.
+
+### 14.4 Creating a Domain-Specific Exception
+
+Imagine a banking application that needs to report a withdrawal exceeding the available balance.
+
+```python
+class InsufficientBalanceError(Exception):
+    pass
+```
+
+The application can raise this exception when the rule is violated:
+
+```python
+balance = 500
+withdrawal = 1000
+
+if withdrawal > balance:
+    raise InsufficientBalanceError(
+        "Insufficient balance for this withdrawal."
+    )
+```
+
+The exception name communicates the problem more precisely than a generic error name.
+
+### 14.5 Handling the Custom Exception
+
+```python
+class InsufficientBalanceError(Exception):
+    pass
+
+
+def withdraw(balance, amount):
+    if amount > balance:
+        raise InsufficientBalanceError(
+            "Insufficient balance."
+        )
+
+    return balance - amount
+
+
+try:
+    remaining_balance = withdraw(500, 1000)
+
+except InsufficientBalanceError as error:
+    print(error)
+
+else:
+    print("Remaining balance:", remaining_balance)
+```
+
+**Output:**
+
+```text
+Insufficient balance.
+```
+
+This example demonstrates how a function can signal a business-rule violation and allow its caller to decide how to respond.
+
+### Do Custom Exceptions Need a Constructor?
+
+Not always.
+
+A simple custom exception can inherit its constructor and behavior from `Exception`:
+
+```python
+class InvalidPINError(Exception):
+    pass
+```
+
+You can then supply a message when raising it:
+
+```python
+raise InvalidPINError("The PIN is invalid.")
+```
+
+You generally do not need to implement `__init__()` or `__str__()` merely to provide a custom error message.
+
+If an exception needs additional structured information, you can define extra attributes or customize its constructor.
+
+**Key idea:** Create custom exceptions when they make application-specific failures easier to recognize and handle.
 
 ---
 
-## ✅ Key Takeaways
+## 15. When to Use Custom Exceptions
 
-- **Module:** A Python file containing reusable code.
-- **Package:** A way to organize related Python modules.
-- **Library:** Reusable functionality that helps solve particular problems.
-- **Standard Library:** Python functionality distributed with the language.
-- **External Library:** Functionality distributed separately and generally installed when needed.
-- **`pip`:** A widely used Python package installer.
-- **`uv`:** A tool for managing Python projects, packages, environments, and dependencies.
-- **Virtual Environment:** An isolated environment for a project's Python dependencies.
-- **`pyproject.toml`:** Stores project metadata, dependencies, and configuration.
-- **`uv.lock`:** Records resolved dependency versions to support reproducible environments.
+Custom exceptions are especially useful when an application has domain-specific rules.
 
-## 🚀 Why This Matters
+Examples include:
 
-Understanding modules, packages, libraries, and dependency management is an important step toward writing maintainable Python applications.
+- `InsufficientBalanceError`
+- `InvalidPINError`
+- `InvalidTransactionError`
+- `DataValidationError`
 
-These concepts become especially useful when working with:
+These names help communicate what went wrong.
 
-- Data analytics and data processing.
-- Python automation.
-- APIs and web applications.
-- Data engineering pipelines.
-- AI and machine learning projects.
-- Larger, multi-module applications.
-- Collaborative projects using Git and GitHub.
+### Built-in vs Custom Exceptions
 
-The goal is not just to write Python code, but to organize it so that it can be reused, maintained, tested, and shared with other developers.
+| Situation | Possible Exception |
+|---|---|
+| A string cannot be converted to an integer | `ValueError` |
+| A dictionary key is missing | `KeyError` |
+| An operation uses an inappropriate type | `TypeError` |
+| A withdrawal exceeds the available balance | `InsufficientBalanceError` |
+| A business-specific transaction rule is violated | `InvalidTransactionError` |
+
+The custom names in the table are examples that you would define yourself.
+
+### Benefits of Custom Exceptions
+
+- **Meaningful names:** Communicate the problem clearly.
+- **Specific handling:** Allow callers to catch a particular application error.
+- **Better organization:** Separate business-rule failures from unrelated programming errors.
+- **Maintainability:** Make error-handling behavior easier to understand as an application grows.
+
+### Why Inherit from `Exception`?
+
+A custom exception should normally inherit from `Exception` so that it participates in Python's standard exception-handling mechanisms.
+
+```python
+class DataValidationError(Exception):
+    pass
+```
+
+This allows code to raise and catch it:
+
+```python
+try:
+    raise DataValidationError("Invalid dataset.")
+
+except DataValidationError as error:
+    print(error)
+```
+
+**Best practice:** Do not create a custom exception when an existing built-in exception already describes the problem adequately.
+
+---
+
+## 16. Error Handling vs Error Prevention
+
+Exception handling is not a reason to place every line of code inside a `try` block.
+
+A good program prevents invalid operations when practical and handles expected failures when they occur.
+
+### Example: Handling a Missing File
+
+```python
+try:
+    with open("data.txt", "r") as file:
+        content = file.read()
+
+except FileNotFoundError:
+    print("The requested file does not exist.")
+```
+
+A file might genuinely be missing, so catching `FileNotFoundError` is a reasonable response.
+
+### Avoid Catching Every Possible Error Without a Plan
+
+```python
+try:
+    # Entire application
+    ...
+
+except Exception:
+    print("Something went wrong.")
+```
+
+This broad handler can hide the original problem and make debugging difficult.
+
+It may also prevent higher-level code from responding appropriately to a failure.
+
+### Better Approach
+
+1. Identify the operation that can fail.
+2. Determine which exceptions are expected.
+3. Catch those exceptions where the program can respond meaningfully.
+4. Allow unexpected exceptions to surface during development or propagate to an appropriate higher-level handler.
+5. Log useful diagnostic details when appropriate.
+
+**Key idea:** Good exception handling makes failures understandable and manageable; it should not conceal defects.
+
+---
+
+## 17. Exception Handling Flow
+
+A simplified view of a `try` statement is:
+
+```text
+             Start
+               |
+               v
+              try
+               |
+        Did try raise an
+          exception?
+          /       \
+        No         Yes
+        |            |
+        v            v
+       else     Find a matching
+                except handler
+                     |
+              Matching handler?
+                /        \
+              Yes         No
+               |           |
+               v           v
+            Handle      Propagate
+            exception   exception
+                \          /
+                 \        /
+                  v      v
+                   finally
+                      |
+                      v
+                     Exit
+```
+
+This diagram is a simplified model of normal exception flow.
+
+A few important details:
+
+- The `else` block executes only when the `try` block finishes without an exception.
+- A matching `except` block handles the exception.
+- If no matching handler is found, the exception propagates.
+- The `finally` block executes during normal control flow leaving the construct, including when an exception propagates.
+
+**Important:** If an exception is raised inside an `else` or `except` block, it is not handled by another `except` belonging to the same `try` statement.
+
+---
+
+## 18. Best Practices
+
+Follow these practices when writing production-quality Python code.
+
+### Catch Specific Exceptions
+
+Prefer:
+
+```python
+try:
+    number = int(user_input)
+
+except ValueError:
+    print("Enter a valid integer.")
+```
+
+over a bare `except` that catches everything without distinguishing the failure.
+
+### Keep `try` Blocks Focused
+
+Place the operation that may fail inside the `try` block rather than wrapping unrelated application logic around it.
+
+### Avoid Silencing Exceptions
+
+Do not catch an exception and do nothing unless suppressing it is explicitly intended and safe.
+
+### Use Meaningful Error Messages
+
+Prefer:
+
+```python
+raise ValueError("Age cannot be negative.")
+```
+
+over an ambiguous message such as:
+
+```python
+raise ValueError("Error.")
+```
+
+### Use Custom Exceptions for Domain-Specific Problems
+
+Create custom exceptions when callers need to distinguish application-specific failures.
+
+### Use `with` for Resource Management
+
+For files and other supported resources, prefer context managers when available.
+
+```python
+with open("data.txt", "r") as file:
+    content = file.read()
+```
+
+### Preserve Unexpected Failures
+
+Do not convert every unexpected error into a generic success or failure message that hides the underlying issue.
+
+### Use Logging When Appropriate
+
+For applications, logging can preserve diagnostic information for investigation.
+
+```python
+import logging
+
+logging.basicConfig(level=logging.ERROR)
+
+try:
+    result = 10 / 0
+
+except ZeroDivisionError:
+    logging.exception("The calculation failed.")
+```
+
+`logging.exception()` includes exception traceback information when called inside an exception handler.
+
+Avoid logging sensitive data such as passwords, access tokens, or personal information.
+
+---
+
+## 19. Common Mistakes
+
+### Mistake 1: Using a Bare `except`
+
+```python
+try:
+    result = 10 / 0
+
+except:
+    print("Error.")
+```
+
+**Why it is problematic:** It can catch exceptions you did not intend to handle, including special exceptions such as `KeyboardInterrupt`.
+
+**Better approach:**
+
+```python
+try:
+    result = 10 / 0
+
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+```
+
+### Mistake 2: Using `raise` as a Replacement for Printing
+
+`raise` does not simply display an error message. It raises an exception and changes the program's control flow.
+
+```python
+raise ValueError("Invalid input.")
+```
+
+Use it when an operation should signal failure to the caller.
+
+### Mistake 3: Creating Custom Exceptions for Everything
+
+Custom exceptions are useful when they express meaningful application-specific conditions.
+
+Do not create a new exception class if a built-in exception already describes the problem adequately.
+
+### Mistake 4: Putting Too Much Code Inside `try`
+
+A large `try` block can make it difficult to determine which operation caused an exception.
+
+Keep exception-handling boundaries as focused as practical.
+
+### Mistake 5: Hiding the Original Error
+
+```python
+try:
+    result = perform_calculation()
+
+except Exception:
+    print("Something went wrong.")
+```
+
+This might be appropriate for a carefully designed user-facing boundary, but on its own it discards useful diagnostic context and can hide unexpected bugs.
+
+During development, preserve the traceback and investigate the underlying cause.
+
+### Mistake 6: Confusing `else` and `finally`
+
+- `else` runs only when the `try` block completes without an exception.
+- `finally` runs during normal control flow leaving the construct, whether the `try` block succeeds or an exception occurs.
+
+They serve different purposes.
+
+---
+
+## ✅ Key Concepts
+
+| Concept | Purpose |
+|---|---|
+| `SyntaxError` | Indicates invalid Python syntax |
+| Exception | Represents a failure or exceptional condition during execution |
+| `try` | Contains code whose exceptions may be handled |
+| `except` | Handles a matching exception |
+| `else` | Runs when the `try` block completes without an exception |
+| `finally` | Performs final operations during normal exit from the construct |
+| `raise` | Explicitly raises an exception |
+| `Exception` | Base class for most ordinary application-level exceptions |
+| Custom Exception | Represents an application-specific failure |
+| `as error` | Binds an exception object to a variable |
+| Traceback | Shows the call sequence and location associated with an exception |
+| Exception Hierarchy | Organizes exception types through inheritance |
+
+---
+
+## 🎓 Learning Takeaway
+
+The central idea behind Python error handling is to identify failures, decide which ones can be handled meaningfully, and ensure that unexpected problems are not silently hidden.
+
+### Basic Exception Handling
+
+```text
+Operation
+    |
+    v
+Exception occurs?
+    |
+    +---- No ----> Continue execution
+    |
+    +---- Yes ---> Find a matching handler
+                       |
+                       +---- Found ----> Handle exception
+                       |
+                       +---- Not found -> Propagate exception
+```
+
+### Using `else` and `finally`
+
+```text
+try
+ |
+ +---- Completes successfully ----> else
+ |
+ +---- Raises exception ----------> except (if matched)
+                                      |
+                                      v
+                                   finally
+```
+
+### Handling Business Rules
+
+```text
+Business rule violated
+        |
+        v
+raise a meaningful exception
+        |
+        v
+Caller receives the exception
+        |
+        v
+Appropriate handler responds
+```
+
+Once you understand these patterns, you can write Python programs that are easier to debug, more predictable, and more maintainable.
 
 ---
 
 ## 📖 Learning Resources
 
-### YouTube Tutorials
+### Video Tutorials
 
-1. [Modules, Packages, and Libraries](https://youtu.be/6mw_lWlHCYk?si=MUPtmNk1u4wlLBh4)
-2. [Libraries and Modules — Visual Explanation](https://youtu.be/7MOzepKojbw?si=YmlfqZz3HZyIFbsc)
-3. [Virtual Environments — Chai aur Code](https://youtu.be/nwN27ORTUXg?si=BKEcvgaYMBtxiOaN)
-4. [uv Package Management — Chai aur Code](https://youtu.be/8mk85fyzevc?si=vLZ9g2lLWyOipdzR)
+- [CampusX — Python Error Handling](https://www.youtube.com/live/rvKR6tciJ2Q?si=5HHG3aI2xFnWqa4m)
+- [Visually Explained — YouTube](https://youtu.be/XN3udSTGAOM?si=iDcfOnVJ_WGdphHT)
+
+### Articles and Practice
+
+- [GeeksforGeeks — Python Exception Handling](https://www.geeksforgeeks.org/python/python-exception-handling/)
+- [30 Days of Python — Exception Handling](https://github.com/Asabeneh/30-Days-Of-Python/blob/master/17_Day_Exception_handling/17_exception_handling.md)
+- [Coddy — Error Handling Practice](https://coddy.tech/learn/python/logic_and_flow/what_is_error_handling)
 
 ### Official Documentation
 
-- [Python Modules](https://docs.python.org/3/tutorial/modules.html)
-- [Python Packages](https://docs.python.org/3/tutorial/modules.html#packages)
-- [Python Standard Library](https://docs.python.org/3/library/)
-- [Python Packaging User Guide](https://packaging.python.org/)
-- [pip Documentation](https://pip.pypa.io/en/stable/)
-- [uv Documentation](https://docs.astral.sh/uv/)
-- [Python `venv` Documentation](https://docs.python.org/3/library/venv.html)
+- [Python Tutorial — Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html)
+- [Python Built-in Exceptions](https://docs.python.org/3/library/exceptions.html)
+- [Python Logging Documentation](https://docs.python.org/3/library/logging.html)
+- [Python `with` Statement and Context Managers](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
 
 ---
 
-**Next Step:** Practice creating a small Python project with multiple modules, organize them into a package, and manage its dependencies using a virtual environment and `uv`.
+**Next Step:** Practise handling `ValueError`, `ZeroDivisionError`, and `FileNotFoundError`. Then create a custom exception for a business rule and write a function that raises it when the rule is violated.
