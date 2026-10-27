@@ -51,7 +51,6 @@ The repository will continue to evolve as I expand my knowledge and build practi
 | 15 | Async Python & Concurrency | ⏳ Upcoming |
 | 16 | Packaging & Project Structure | ⏳ Upcoming |
 
-> **Note:** Update the roadmap links and numbering to match your actual repository folders before publishing. The Testing entry above assumes your testing folder is named `09_testing`; if that conflicts with your existing numbering, rename the folder or update the link accordingly.
 
 ## 🛠️ Tools & Technologies
 
