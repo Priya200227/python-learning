@@ -44,10 +44,10 @@ The repository will continue to evolve as I expand my knowledge and build practi
 | 08 | [Object-Oriented Programming](08_oop/README.md) | ✅ Covered |
 | 09 | [Testing with Pytest](09_testing/README.md) | ✅ Covered |
 | 10 | [Pydantic](10_pydantic/README.md) | ✅ Covered |
-| 12 | Logging | ⏳ Upcoming |
-| 13 | APIs & HTTP | ⏳ Upcoming |
-| 08 | [JSON & Serialization](08_json_&_serialization/README.md) | ✅ Covered |
-| 14 | Environment Variables & Secrets | ⏳ Upcoming |
+| 11 | [JSON & Serialization](11_json_&_serialization/README.md) | ✅ Covered |
+| 12 | [Environment Variables & Secrets](12_environment_variables_&_secrets/README.md) | ✅ Covered |
+| 13 | Logging | ⏳ Upcoming |
+| 14 | APIs & HTTP | ⏳ Upcoming |
 | 15 | Async Python & Concurrency | ⏳ Upcoming |
 | 16 | Packaging & Project Structure | ⏳ Upcoming |
 
