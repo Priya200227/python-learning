@@ -637,6 +637,3 @@ Use this checklist to test understanding without looking at the notes.
 ## Learning Reflection
 
 **What I learned:** APIs provide a defined way for software components to communicate. HTTP methods, request/response structure, data formats, authentication, and error handling form the foundation of many web integrations. Different API styles serve different requirements, and APIs are especially important in AI applications because they connect models with tools, data, and real-world workflows.
-
-**Next step:** Practise making real HTTP requests from Python, then build and test a small API with FastAPI.
-
