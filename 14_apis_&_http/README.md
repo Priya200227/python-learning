@@ -2,7 +2,8 @@
 
 > Learning notes on Application Programming Interfaces (APIs), HTTP, common API styles, and how APIs connect modern applications—including AI-powered systems.
 >
-> **Learning source:** [Complete APIs Crash Course in 14 Minutes — Vishakha Sadhwani](https://www.youtube.com/)  
+> **Learning sources:**  [What is an API? | Introduction to APIs - CampusX](https://www.youtube.com/watch?v=WJKsPchji0Q)
+> [Complete APIs Crash Course in 14 Minutes — Vishakha Sadhwani](https://www.youtube.com/watch?v=UXA8MJUWUqU&t=48s)
 > **Notes format:** Concept summaries, comparisons, examples, and revision checklist.
 
 ---
