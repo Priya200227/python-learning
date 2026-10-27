@@ -41,12 +41,12 @@ The repository will continue to evolve as I expand my knowledge and build practi
 | 05 | [Modules & Packages](05_modules_&_packages/README.md) | ✅ Covered |
 | 06 | [Exception Handling](06_error_handling/README.md) | ✅ Covered |
 | 07 | [File Handling](07_file_handling/README.md) | ✅ Covered |
-| 08 | [JSON & Serialization](08_json_&_serialization/README.md) | ✅ Covered |
-| 09 | [Object-Oriented Programming](09_oop/README.md) | ✅ Covered |
-| 10 | [Testing with Pytest](09_testing/README.md) | ✅ Covered |
-| 11 | [Pydantic](10_pydantic/README.md) | ✅ Covered |
+| 08 | [Object-Oriented Programming](09_oop/README.md) | ✅ Covered |
+| 09 | [Testing with Pytest](09_testing/README.md) | ✅ Covered |
+| 10 | [Pydantic](10_pydantic/README.md) | ✅ Covered |
 | 12 | Logging | ⏳ Upcoming |
 | 13 | APIs & HTTP | ⏳ Upcoming |
+| 08 | [JSON & Serialization](08_json_&_serialization/README.md) | ✅ Covered |
 | 14 | Environment Variables & Secrets | ⏳ Upcoming |
 | 15 | Async Python & Concurrency | ⏳ Upcoming |
 | 16 | Packaging & Project Structure | ⏳ Upcoming |
