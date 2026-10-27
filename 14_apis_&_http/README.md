@@ -624,7 +624,8 @@ Use this checklist to test understanding without looking at the notes.
 
 ## References
 
-- [Complete APIs Crash Course in 14 Minutes — Vishakha Sadhwani](https://www.youtube.com/results?search_query=Complete+APIs+Crash+Course+In+14+Minutes+Vishakha+Sadhwani)
+- [Complete APIs Crash Course in 14 Minutes — Vishakha Sadhwani](https://www.youtube.com/watch?v=UXA8MJUWUqU&t=48s)
+- [What is an API? | Introduction to APIs - CampusX](https://www.youtube.com/watch?v=WJKsPchji0Q)
 - [MDN: HTTP overview](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview)
 - [MDN: HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods)
 - [Requests: Quickstart](https://requests.readthedocs.io/en/latest/user/quickstart/)
