@@ -5,8 +5,6 @@
 > **Purpose:** A concise reference for validating application data, configuring Python applications, and validating structured LLM outputs.
 
 
-These notes consolidate the concepts in my own words. The original course materials remain the property of their respective creators.
-
 [← Back to Repository](https://github.com/Priya200227/python-learning)
 
 ---
