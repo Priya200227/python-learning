@@ -1,6 +1,6 @@
 # Pydantic — Practical Notes for Python & AI Engineering
 
->  **Section:** CampusX — []()
+>  **Section:** [CampusX](https://youtu.be/lRArylZCeOs?si=a3xpeGHy6cauHZKC)
 > 
 > **Purpose:** A concise reference for validating application data, configuring Python applications, and validating structured LLM outputs.
 
