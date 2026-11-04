@@ -1,10 +1,13 @@
 # Pydantic — Practical Notes for Python & AI Engineering
 
-> **Scope:** Pydantic v2  
-> **Purpose:** A concise reference for validating application data, configuring Python applications, and validating structured LLM outputs.  
-> **Sources:** CampusX Pydantic examples, Dave Ebbelaar's Pydantic Crash Course, Sheryians AI School's Pydantic course notes, and the official Pydantic documentation.
+>  **Section:** CampusX — []()
+> 
+> **Purpose:** A concise reference for validating application data, configuring Python applications, and validating structured LLM outputs.
+
 
 These notes consolidate the concepts in my own words. The original course materials remain the property of their respective creators.
+
+[← Back to Repository](https://github.com/Priya200227/python-learning)
 
 ---
 
@@ -607,7 +610,3 @@ else:
 - **Dave Ebbelaar — repository:** [pydantic-crash-course](https://github.com/daveebbelaar/pydantic-crash-course)
 - **Course docs:** [Introduction](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/01-introduction.md) · [Type hints](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/02-type-hints.md) · [First model](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/03-your-first-model.md) · [Validation and fields](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/04-validation-and-fields.md) · [Nested models](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/05-nested-models.md) · [Settings](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/06-pydantic-settings.md) · [Structured LLM output](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/07-structured-llm-output.md) · [Summary](https://github.com/daveebbelaar/pydantic-crash-course/blob/master/docs/08-summary.md)
 - **Official docs:** [Pydantic](https://docs.pydantic.dev/latest/) · [Models](https://docs.pydantic.dev/latest/concepts/models/) · [Validators](https://docs.pydantic.dev/latest/concepts/validators/) · [Fields](https://docs.pydantic.dev/latest/concepts/fields/) · [Serialization](https://docs.pydantic.dev/latest/concepts/serialization/) · [Settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)
-
----
-
-*Last reviewed: October 2026. Check the documentation for the exact Pydantic version installed in your project.*
