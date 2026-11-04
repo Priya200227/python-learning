@@ -604,7 +604,6 @@ else:
 
 ## 20. Learning resources
 
-- **YouTube Video**
 - [Pydantic Crash Course: Build Reliable Python & AI Applications by Dave Ebbelaar](https://www.youtube.com/watch?v=PkQIREapb9o)
 - [Pydantic Crash Course by CampusX](https://youtu.be/lRArylZCeOs?si=a3xpeGHy6cauHZKC)
 
