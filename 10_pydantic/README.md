@@ -1,4 +1,4 @@
-# Pydantic — Practical Notes for Python & AI Engineering
+# Pydantic 
 
 >  **Section:** CampusX - [Pydantic Crash Course](https://youtu.be/lRArylZCeOs?si=a3xpeGHy6cauHZKC)
 > 
