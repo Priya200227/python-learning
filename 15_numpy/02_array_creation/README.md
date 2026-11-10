@@ -2,6 +2,8 @@
 
 NumPy provides different ways to create arrays depending on whether values are sequential, fixed, or random.
 
+![Open Array Creation Techniques mind map](assests/02_array_creation_mindmap.png)
+
 ## 1. Sequential arrays
 
 ### `np.arange()`
@@ -64,11 +66,6 @@ values = rng.random((2, 2))
 - `zeros`, `ones`, `full`: initialise with fixed values.
 - Random functions: generate values according to a distribution.
 
-## Handwritten notes
-
-[Open Array Creation Techniques mind map](../notes/02_array_creation_mindmap.png)
-
 ## Official reference
 
 [Array creation routines](https://numpy.org/doc/stable/user/basics.creation.html)
-
