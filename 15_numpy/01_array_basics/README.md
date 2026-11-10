@@ -2,7 +2,7 @@
 
 The main NumPy data structure is `numpy.ndarray`, an N-dimensional array.
 
-[Mindmap](15_numpy/notes/01_array_basics_mindmap.png)
+[Mindmap](01_array_basics/01_array_basics_mindmap.png)
 
 ## Creating an array
 
