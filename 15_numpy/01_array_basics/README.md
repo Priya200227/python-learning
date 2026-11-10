@@ -2,6 +2,8 @@
 
 The main NumPy data structure is `numpy.ndarray`, an N-dimensional array.
 
+[Mindmap](notes/01_array_basics_mindmap.png)
+
 ## Creating an array
 
 ```python
@@ -42,11 +44,7 @@ print(arr.size)   # 6
 print(arr.dtype)  # e.g. int64, depending on the platform
 ```
 
-A 1D array is a sequence. A 2D array is commonly used to represent a matrix or table-like structure.
-
-## Handwritten notes
-
-[Open NumPy Array Basics mind map](notes/01_array_basics_mindmap.png)
+A 1D array is a sequence. A 2D array commonly represents a matrix or table-like structure.
 
 ## Remember
 
