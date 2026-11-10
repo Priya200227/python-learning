@@ -2,6 +2,8 @@
 
 These concepts explain how NumPy arrays can be transformed and operated on efficiently.
 
+![Open NumPy overview mind map](assests/numpy_overview_mindmap.png)
+
 ## 1. Reshaping and manipulating arrays
 
 | Function | Purpose |
@@ -88,10 +90,6 @@ NumPy arrays are commonly used with:
 - PyTorch
 
 NumPy provides a numerical foundation used across much of the Python data and scientific-computing ecosystem.
-
-## Handwritten notes
-
-[Open NumPy overview mind map](../notes/numpy_overview_mindmap.png)
 
 ## What to practise
 
