@@ -4,10 +4,10 @@ NumPy is a Python library for numerical computing. Its core data structure is th
 
 ## Topics covered
 
-1. [NumPy Array Basics](01_array_basics/README.md) · [Handwritten notes](notes/01_array_basics_mindmap.png)
-2. [Array Creation Techniques](02_array_creation/README.md) · [Handwritten notes](notes/02_array_creation_mindmap.png)
-3. [Indexing and Slicing](03_indexing_and_slicing/README.md) · [Handwritten notes](notes/03_indexing_and_slicing_mindmap.png)
-4. [Core NumPy Concepts](04_core_concepts/README.md) · [NumPy overview mind map](notes/numpy_overview_mindmap.png)
+1. [NumPy Array Basics](01_array_basics/README.md)
+2. [Array Creation Techniques](02_array_creation/README.md)
+3. [Indexing and Slicing](03_indexing_and_slicing/README.md) 
+4. [Core NumPy Concepts](04_core_concepts/README.md) 
 
 ## Why NumPy?
 
@@ -21,14 +21,6 @@ NumPy is a Python library for numerical computing. Its core data structure is th
 
 Understand array dimensions, shapes, data types, indexing, and how operations work across arrays. Practise each concept with small examples before applying it to data analysis.
 
-## Handwritten notes
-
-- [NumPy overview mind map](notes/numpy_overview_mindmap.png)
-- [Array basics](notes/01_array_basics_mindmap.png)
-- [Array creation](notes/02_array_creation_mindmap.png)
-- [Indexing and slicing](notes/03_indexing_and_slicing_mindmap.png)
-
 ## Official reference
 
 [NumPy documentation](https://numpy.org/doc/stable/)
-
