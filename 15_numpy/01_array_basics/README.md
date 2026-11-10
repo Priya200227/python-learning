@@ -46,7 +46,7 @@ A 1D array is a sequence. A 2D array is commonly used to represent a matrix or t
 
 ## Handwritten notes
 
-[Open NumPy Array Basics mind map](../notes/01_array_basics_mindmap.png)
+[Open NumPy Array Basics mind map](notes/01_array_basics_mindmap.png)
 
 ## Remember
 
