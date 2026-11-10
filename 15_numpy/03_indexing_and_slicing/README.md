@@ -2,6 +2,8 @@
 
 Indexing and slicing let you access individual elements or subsets of an array.
 
+![Open Indexing and Slicing mind map](assests/03_indexing_and_slicing_mindmap.png)
+
 ## 1. Basic indexing
 
 Access an element by its position. NumPy uses zero-based indexing.
@@ -83,10 +85,6 @@ Fancy indexing returns a copy rather than a view.
 | Slicing | You need a continuous range |
 | Boolean indexing | You need values matching a condition |
 | Fancy indexing | You need specific non-consecutive positions |
-
-## Handwritten notes
-
-[Open Indexing and Slicing mind map](../notes/03_indexing_and_slicing_mindmap.png)
 
 ## Remember
 
