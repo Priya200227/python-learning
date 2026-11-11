@@ -2,7 +2,7 @@
 
 Array shape manipulation changes the dimensions or arrangement of an array. The goal is to reorganise its shape without changing its underlying values.
 
-![Open Array Shape Manipulation mind map](array_shape_manipulation_mindmap.png)
+![Open Array Shape Manipulation mind map](assets/array_shape_manipulation_mindmap.png)
 
 ## 1. Reshaping
 
